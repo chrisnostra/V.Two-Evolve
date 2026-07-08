@@ -122,22 +122,6 @@ export default function Home() {
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.4}>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm max-w-4xl mx-auto">
-                <div className="p-6 border-b md:border-b-0 md:border-r border-gray-200 text-left">
-                  <div className="font-bold text-[#1A1A1A] mb-1">Free</div>
-                  <div className="text-sm text-[#666666] leading-relaxed">Assessment. A concrete modernization plan, no cost.</div>
-                </div>
-                <div className="p-6 border-b md:border-b-0 md:border-r border-gray-200 text-left">
-                  <div className="font-bold text-[#1A1A1A] mb-1">$50,000</div>
-                  <div className="text-sm text-[#666666] leading-relaxed">Fixed-fee pilot. Working modernized code, not a slide deck.</div>
-                </div>
-                <div className="p-6 text-left">
-                  <div className="font-bold text-[#1A1A1A] mb-1">Fixed-fee</div>
-                  <div className="text-sm text-[#666666] leading-relaxed">Build. Scoped from the pilot. No open-ended T&M.</div>
-                </div>
-              </div>
-            </FadeIn>
           </div>
         </section>
 
