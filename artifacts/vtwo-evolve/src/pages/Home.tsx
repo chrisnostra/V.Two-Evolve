@@ -95,7 +95,7 @@ export default function Home() {
       <main>
         {/* Section 1 - Hero */}
         <section className="relative pt-24 pb-32 overflow-hidden" style={{ background: "linear-gradient(180deg, #F5F0FA 0%, #FFFFFF 100%)" }}>
-          <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="max-w-7xl mx-auto px-6 text-center">
             <FadeIn>
               <div className="inline-flex items-center rounded-full border border-[#7030A0] bg-white px-4 py-1 text-sm font-semibold text-[#7030A0] mb-8">
                 Application Modernization
@@ -103,7 +103,7 @@ export default function Home() {
             </FadeIn>
             <FadeIn delay={0.1}>
               <h1 className="text-5xl md:text-6xl font-extrabold text-[#1A1A1A] tracking-tight leading-tight mb-8">
-                Your legacy platforms are a liability. <br className="hidden md:block"/> <span className="text-[#7030A0]">V.Two Evolve</span> turns them into an advantage.
+                Your legacy platforms are a liability. <span className="text-[#7030A0]">V.Two Evolve</span> turns them into an advantage.
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
