@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "V.Two Evolve"
+version = "1.0.0"
+id = "artifacts/vtwo-evolve"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22078
+
+[services.development]
+run = "pnpm --filter @workspace/vtwo-evolve run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/vtwo-evolve", "run", "build" ]
+publicDir = "artifacts/vtwo-evolve/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22078"
+BASE_PATH = "/"
