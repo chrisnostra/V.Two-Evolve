@@ -108,7 +108,7 @@ export default function Home() {
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="text-xl md:text-2xl text-[#666666] mb-12 max-w-3xl mx-auto leading-relaxed">
-                V.Two Evolve is our proprietary set of skills, processes, and methods that modernize business platforms via AI. Faster than a rewrite. Safer than a lift-and-shift. Priced so the risk sits with us, not you.
+                V.Two Evolve is our proprietary accelerator that modernizes business platforms via AI. Faster than a rewrite. Safer than a lift-and-shift. Priced so the risk sits with us, not you.
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
