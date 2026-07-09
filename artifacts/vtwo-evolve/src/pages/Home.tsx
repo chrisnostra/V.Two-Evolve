@@ -110,7 +110,7 @@ export default function Home() {
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="text-xl md:text-2xl text-[#666666] mb-12 max-w-3xl mx-auto leading-relaxed">
-                V.Two Evolve is our proprietary accelerator that modernizes business platforms via AI. Faster than a rewrite. Safer than a lift-and-shift. Priced so the risk sits with us, not you.
+                V.Two Evolve modernizes business platforms with AI. Faster than a rewrite. Safer than a lift-and-shift. Priced so the risk sits with us, not you.
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
@@ -139,16 +139,16 @@ export default function Home() {
                 {
                   num: "01",
                   title: "Maintenance is eating your budget",
-                  desc: "Every year more spend goes to keeping old platforms alive, the gap compounds."
+                  desc: "Every year, more of your budget goes to keeping old platforms alive. The gap compounds."
                 },
                 {
                   num: "02",
                   title: "Rewrites keep failing",
-                  desc: "Traditional rewrites run long and get cancelled, the problem is the method of humans re-reading millions of lines by hand."
+                  desc: "Traditional rewrites run long and get cancelled — because they depend on humans re-reading millions of lines of code by hand."
                 },
                 {
                   num: "03",
-                  title: "AI moved the goalposts",
+                  title: "AI changed what's possible",
                   desc: "AI can read, map, and regenerate codebases at speeds no human team can match; firms that apply it with discipline modernize in months, not years."
                 }
               ].map((item, i) => (
@@ -168,7 +168,7 @@ export default function Home() {
         <section className="py-24 bg-gray-50 border-y border-gray-100">
           <div className="max-w-7xl mx-auto px-6">
             <FadeIn>
-              <SectionHeading label="Sound familiar?" title="If any of these is you, we should talk." />
+              <SectionHeading label="Sound familiar?" title="If any of this sounds familiar, we should talk." />
             </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
@@ -195,9 +195,9 @@ export default function Home() {
         <section id="the-model" className="py-24 bg-gray-50 border-y border-gray-100">
           <div className="max-w-7xl mx-auto px-6">
             <FadeIn>
-              <SectionHeading label="The proprietary model" title="V.Two Evolve: skills, processes, and methods" />
+              <SectionHeading label="How we work" title="Not a product. A way of working." />
               <p className="text-xl text-[#666666] max-w-3xl mb-16 leading-relaxed">
-                It is not a tool you license — it is how V.Two works. A proprietary system built across real client engagements.
+                Not a tool you license — the system, people, and method we bring to every engagement, refined across real client work.
               </p>
             </FadeIn>
             
@@ -237,7 +237,7 @@ export default function Home() {
               <FadeIn delay={0.1}>
                 <div className="bg-[#FAFAFA] rounded-xl p-8 h-full border border-gray-200">
                   <h3 className="text-lg font-bold text-[#1A1A1A] mb-6 flex items-center gap-2">
-                    <span className="text-[#999999]">✕</span> Legacy &amp; on-prem
+                    <span className="text-[#999999]" aria-hidden="true">✕</span> Legacy &amp; on-prem
                   </h3>
                   <ul className="space-y-3">
                     {[
@@ -247,7 +247,7 @@ export default function Home() {
                       "Slow, risky, expensive to change",
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-2 text-[#666666] leading-snug">
-                        <span className="text-[#999999] mt-1 flex-shrink-0">–</span>
+                        <span className="text-[#999999] mt-1 flex-shrink-0" aria-hidden="true">–</span>
                         {item}
                       </li>
                     ))}
@@ -257,7 +257,7 @@ export default function Home() {
               <FadeIn delay={0.2}>
                 <div className="bg-white rounded-xl p-8 h-full border-2 border-[#7030A0] shadow-sm">
                   <h3 className="text-lg font-bold text-[#7030A0] mb-6 flex items-center gap-2">
-                    <span>✓</span> Modern &amp; cloud
+                    <span aria-hidden="true">✓</span> Modern &amp; cloud
                   </h3>
                   <ul className="space-y-3">
                     {[
@@ -267,7 +267,7 @@ export default function Home() {
                       "Evergreen, and cheaper to run",
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-2 text-[#1A1A1A] leading-snug">
-                        <span className="text-[#7030A0] mt-1 flex-shrink-0">✓</span>
+                        <span className="text-[#7030A0] mt-1 flex-shrink-0" aria-hidden="true">✓</span>
                         {item}
                       </li>
                     ))}
@@ -293,7 +293,7 @@ export default function Home() {
               </p>
             </FadeIn>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-20">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-6 mb-20">
               {[
                 { n: "1", title: "Analyze", badge: "Free", desc: "We map your system, its dependencies, and where the real risk lives. You get a clear picture of what modernizing takes — at no cost and no commitment." },
                 { n: "2", title: "Document", desc: "We recover the business rules buried in your code into clear specifications you own, so the knowledge is no longer trapped in software." },
@@ -379,7 +379,7 @@ export default function Home() {
                     <ul className="space-y-2">
                       {col.phases.map((p) => (
                         <li key={p} className="flex items-start gap-2 text-sm text-[#666666] leading-snug">
-                          <span className="text-[#7030A0] mt-0.5 flex-shrink-0">›</span>
+                          <span className="text-[#7030A0] mt-0.5 flex-shrink-0" aria-hidden="true">›</span>
                           {p}
                         </li>
                       ))}
@@ -398,10 +398,10 @@ export default function Home() {
               <div className="rounded-xl bg-[#1A1A1A] shadow-lg overflow-hidden mb-20 border border-black/20">
                 <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-black/30">
                   <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
-                    <span className="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
-                    <span className="w-3 h-3 rounded-full bg-[#27c93f]"></span>
-                    <span className="ml-3 text-xs font-mono text-white/50">InvoiceTotals.business-rules.yaml</span>
+                    <span className="w-3 h-3 rounded-full bg-[#ff5f56]" aria-hidden="true"></span>
+                    <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" aria-hidden="true"></span>
+                    <span className="w-3 h-3 rounded-full bg-[#27c93f]" aria-hidden="true"></span>
+                    <span className="ml-3 text-xs font-mono text-white/60">InvoiceTotals.business-rules.yaml</span>
                   </div>
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#7030A0] text-white">Redacted sample</span>
                 </div>
@@ -428,7 +428,7 @@ acceptance:
               <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">How we prove it is right</h3>
               <p className="text-[#666666] mb-8 max-w-3xl leading-relaxed">Nothing legacy is switched off until its modern replacement is proven at parity against your live system. Every increment clears five gates before it ships:</p>
             </FadeIn>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-10">
               {[
                 "Parity proven on the live system",
                 "Conforms to house patterns",
@@ -438,7 +438,7 @@ acceptance:
               ].map((dim, i) => (
                 <FadeIn key={dim} delay={0.08 * i}>
                   <div className="bg-white rounded-lg p-5 border border-gray-100 shadow-sm h-full flex items-start gap-2">
-                    <span className="text-[#7030A0] font-bold flex-shrink-0">✓</span>
+                    <span className="text-[#7030A0] font-bold flex-shrink-0" aria-hidden="true">✓</span>
                     <span className="text-sm font-medium text-[#1A1A1A] leading-snug">{dim}</span>
                   </div>
                 </FadeIn>
@@ -521,8 +521,8 @@ acceptance:
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
-                  title: "We are experts",
-                  desc: "Application modernization via AI is not a side practice for us. It is the work. V.Two Evolve exists because we have done this on real platforms, refined the method each time, and codified what works.",
+                  title: "This is the only thing we do",
+                  desc: "Application modernization with AI is not a side practice for us. It is the work. V.Two Evolve exists because we have done this on real platforms, refined the method each time, and codified what works.",
                 },
                 {
                   title: "Fixed bid. Risk removed.",
@@ -533,8 +533,8 @@ acceptance:
                   desc: "We have shipped modernization work for real clients on real production systems. Our references speak to delivery, not decks.",
                 },
                 {
-                  title: "AI credentials and client references",
-                  desc: "Our team builds with AI every day. Ask us for client references. We will connect you directly.",
+                  title: "References, on request",
+                  desc: "We'll connect you directly with clients whose production systems we've modernized. Ask.",
                 },
               ].map((card, i) => (
                 <FadeIn key={card.title} delay={0.1 * i}>
@@ -572,7 +572,7 @@ acceptance:
               ].map((item, i) => (
                 <FadeIn key={item.d} delay={0.05 * (i % 3)}>
                   <div className="bg-white rounded-lg p-5 h-full border border-gray-100 shadow-sm flex items-start gap-3">
-                    <span className="text-[#7030A0] font-bold flex-shrink-0 mt-0.5">✓</span>
+                    <span className="text-[#7030A0] font-bold flex-shrink-0 mt-0.5" aria-hidden="true">✓</span>
                     <div>
                       <div className="text-[#1A1A1A] font-semibold leading-snug">{item.d}</div>
                       <div className="text-xs font-mono text-[#7030A0] mt-1">{item.p}</div>
@@ -681,7 +681,7 @@ acceptance:
               </a>
             </div>
           </div>
-          <div className="border-t border-white/10 pt-8 flex flex-col items-center justify-center text-white/50 text-sm">
+          <div className="border-t border-white/10 pt-8 flex flex-col items-center justify-center text-white/60 text-sm">
             <p>&copy; 2026 V.Two. All rights reserved.</p>
           </div>
         </div>
