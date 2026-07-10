@@ -33,7 +33,7 @@ function Nav() {
 
         <div className="hidden md:flex">
           <a
-            href="https://www.vtwo.co/get-in-touch/contact"
+            href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-5 py-2 text-sm font-semibold text-white bg-[#7030A0] rounded-md hover:bg-[#5a2680] transition-colors shadow-sm"
           >
             Start free
@@ -57,7 +57,7 @@ function Nav() {
             <a href="#case-study" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#666666] hover:text-[#7030A0]">Case study</a>
             <a href="#deliverables" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#666666] hover:text-[#7030A0]">Deliverables</a>
             <a href="#why-vtwo" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#666666] hover:text-[#7030A0]">Why V.Two</a>
-            <a href="https://www.vtwo.co/get-in-touch/contact" className="mt-4 inline-flex items-center justify-center px-5 py-2 text-base font-semibold text-white bg-[#7030A0] rounded-md mx-3">
+            <a href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center justify-center px-5 py-2 text-base font-semibold text-white bg-[#7030A0] rounded-md mx-3">
               Start free
             </a>
           </div>
@@ -187,7 +187,7 @@ export default function Home() {
             </FadeIn>
             <FadeIn delay={0.3}>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                <a href="https://www.vtwo.co/get-in-touch/contact" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-lg font-bold text-white bg-[#7030A0] rounded-md hover:bg-[#5a2680] transition-colors shadow-sm">
+                <a href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-lg font-bold text-white bg-[#7030A0] rounded-md hover:bg-[#5a2680] transition-colors shadow-sm">
                   Start with a free assessment
                 </a>
                 <a href="#inside" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-lg font-bold text-[#7030A0] bg-transparent border-2 border-[#7030A0] rounded-md hover:bg-[#F5F0FA] transition-colors">
@@ -737,7 +737,7 @@ acceptance:
                 ))}
               </div>
 
-              <a href="https://www.vtwo.co/get-in-touch/contact" className="inline-flex items-center justify-center px-8 py-4 text-xl font-bold text-[#7030A0] bg-white rounded-md hover:bg-gray-100 transition-colors shadow-lg">
+              <a href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-4 text-xl font-bold text-[#7030A0] bg-white rounded-md hover:bg-gray-100 transition-colors shadow-lg">
                 Request your free assessment
               </a>
             </FadeIn>
@@ -756,7 +756,7 @@ acceptance:
               <a href="https://www.vtwo.co" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-[#7030A0] transition-colors font-medium">
                 www.vtwo.co
               </a>
-              <a href="mailto:chris@vtwo.co" className="text-white/80 hover:text-[#7030A0] transition-colors font-medium">
+              <a href="mailto:chris@vtwo.co" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-[#7030A0] transition-colors font-medium">
                 chris@vtwo.co
               </a>
             </div>
