@@ -574,6 +574,65 @@ confirmed_by: Finance Lead`}</pre>
                 The export format is a machine-checkable schema, so every recovered rule is validated, cited, and signed off by your domain experts before it drives a single line of the rebuild. You end up owning a complete, plain-language specification of a system that used to live only in code.
               </p>
             </FadeIn>
+
+            {/* A harder one: the edge cases naive rewrites miss */}
+            <FadeIn>
+              <h3 className="text-2xl md:text-3xl font-bold text-[#f6f7ff] tracking-tight mt-24 mb-4">The hard part is the edge cases nobody remembers</h3>
+              <p className="text-lg text-[#9096bb] max-w-3xl mb-10 leading-relaxed">
+                Extracting the obvious rules is easy. The value is in the rules that are conditional, date-sensitive, or quietly special-cased. The ones that pass a rewrite's unit tests and still get month-end billing wrong. Take tax:
+              </p>
+            </FadeIn>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+              <FadeIn delay={0.05}>
+                <div className="h-full rounded-xl bg-[#05060d] border border-white/10 overflow-hidden">
+                  <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-black/30">
+                    <span className="text-xs font-mono text-[#828aa6]">TaxCalculator.cs</span>
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#e0a24a]">Legacy</span>
+                  </div>
+                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/85 overflow-x-auto leading-relaxed whitespace-pre">{`public decimal ComputeTax(Invoice inv)
+{
+  var taxable = inv.Lines
+    .Where(l => l.IsTaxable)
+    .Sum(l => l.Total);
+
+  // rate as of the invoice date,
+  // NOT today's rate
+  var rate = RateOn(inv.Date);
+
+  return Math.Round(taxable * rate, 2,
+    MidpointRounding.AwayFromZero);
+}`}</pre>
+                </div>
+              </FadeIn>
+              <FadeIn delay={0.15}>
+                <div className="h-full rounded-xl bg-[#0f1122] border border-[#9b6bf4]/40 overflow-hidden">
+                  <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-[#9b6bf4]/10">
+                    <span className="text-xs font-mono text-[#b091ff]">business-rules.yaml</span>
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#e0a24a]">Needs domain sign-off</span>
+                  </div>
+                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/90 overflow-x-auto leading-relaxed whitespace-pre">{`id: BR-002
+title: Tax applies only to taxable
+  lines, at the invoice-dated rate
+type: calculation
+conditions:
+  - only lines where isTaxable = true
+edge_cases:
+  - no taxable lines -> tax = 0.00
+    (not null)
+  - back-dated invoices use the rate
+    in effect on the invoice date,
+    not today's rate
+source: TaxCalculator.cs:40-77
+confidence: inferred
+confirmation: pending`}</pre>
+                </div>
+              </FadeIn>
+            </div>
+            <FadeIn>
+              <p className="text-base text-[#9096bb] max-w-3xl mt-8 leading-relaxed">
+                A rewrite that "looks right" would use today's tax rate and return <span className="font-mono text-[#b091ff]">null</span> for an untaxed invoice. Both are wrong, and both are invisible until a client's month-end. Because these rules are <span className="text-[#f6f7ff] font-medium">inferred, not certain</span>, we flag them for your domain owner and prove them with a parity harness that replays real historical invoices, so date-sensitive and edge-case behavior is caught before any cutover.
+              </p>
+            </FadeIn>
           </div>
         </section>
 
