@@ -23,18 +23,17 @@ function Nav() {
         
         <div className="hidden md:flex items-center space-x-8">
           <a href="#why-now" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Why now</a>
-          <a href="#the-model" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">The model</a>
           <a href="#approach" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Approach</a>
           <a href="#inside" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Inside the work</a>
+          <a href="#business-rules" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Business rules</a>
           <a href="#case-study" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Case study</a>
-          <a href="#deliverables" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Deliverables</a>
           <a href="#why-vtwo" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Why V.Two</a>
         </div>
 
         <div className="hidden md:flex">
           <a
             href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-5 py-2 text-sm font-semibold text-white bg-[#9b6bf4] rounded-md hover:bg-[#8250d6] transition-colors shadow-sm"
+            className="inline-flex items-center justify-center px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-[#9b6bf4] to-[#f05aae] rounded-md hover:opacity-90 transition-opacity shadow-[0_6px_24px_rgba(155,107,244,0.35)]"
           >
             Start free
           </a>
@@ -51,13 +50,12 @@ function Nav() {
         <div className="md:hidden bg-[#0f1122] border-b border-white/10">
           <div className="px-4 pt-2 pb-6 space-y-2 flex flex-col">
             <a href="#why-now" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Why now</a>
-            <a href="#the-model" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">The model</a>
             <a href="#approach" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Approach</a>
             <a href="#inside" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Inside the work</a>
+            <a href="#business-rules" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Business rules</a>
             <a href="#case-study" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Case study</a>
-            <a href="#deliverables" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Deliverables</a>
             <a href="#why-vtwo" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Why V.Two</a>
-            <a href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center justify-center px-5 py-2 text-base font-semibold text-white bg-[#9b6bf4] rounded-md mx-3">
+            <a href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center justify-center px-5 py-2 text-base font-semibold text-white bg-gradient-to-r from-[#9b6bf4] to-[#f05aae] rounded-md mx-3">
               Start free
             </a>
           </div>
@@ -187,7 +185,7 @@ export default function Home() {
             </FadeIn>
             <FadeIn delay={0.3}>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-                <a href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-lg font-bold text-white bg-[#9b6bf4] rounded-md hover:bg-[#8250d6] transition-colors shadow-sm">
+                <a href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-lg font-bold text-white bg-gradient-to-r from-[#9b6bf4] to-[#f05aae] rounded-md hover:opacity-90 transition-opacity shadow-[0_6px_24px_rgba(155,107,244,0.35)]">
                   Start with a free assessment
                 </a>
                 <a href="#inside" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 text-lg font-bold text-[#b091ff] bg-transparent border-2 border-[#9b6bf4]/50 rounded-md hover:bg-[#1b1836] transition-colors">
@@ -364,7 +362,7 @@ export default function Home() {
             <FadeIn>
               <SectionHeading label="Our approach" title="Five steps. The first one's free." />
               <p className="text-xl text-[#9096bb] max-w-3xl mb-16 leading-relaxed -mt-6">
-                A clear path from "we're not sure what we have" to a modern platform in production.
+                A clear path from "we're not sure what we have" to a modern platform in production. The first production module ships as a fixed-scope <span className="text-[#f6f7ff] font-medium">pilot</span>, so you can judge the outcome on real code before committing to the full build.
               </p>
             </FadeIn>
 
@@ -429,7 +427,7 @@ export default function Home() {
             <FadeIn>
               <SectionHeading label="Inside the work" title="A look at how we actually do it" />
               <p className="text-xl text-[#9096bb] max-w-3xl mb-16 leading-relaxed -mt-6">
-                Most firms show you a deck. Here is a redacted look at the real method and the artifacts a V.Two Evolve engagement produces. This is why the outcomes hold up.
+                Most firms show you a deck. Here is how the method actually runs, and how we prove every increment holds up before it ships.
               </p>
             </FadeIn>
 
