@@ -467,40 +467,6 @@ export default function Home() {
               ))}
             </div>
 
-            {/* B. A real deliverable (redacted): business-rule extraction */}
-            <FadeIn>
-              <h3 className="text-xl font-bold text-[#f6f7ff] mb-2">A real deliverable: recovered business rules</h3>
-              <p className="text-[#9096bb] mb-8 max-w-3xl leading-relaxed">Logic buried in legacy code is extracted into a plain-language spec you own. Each rule cites the exact code it came from and ships with a parity check that proves the rebuild behaves identically. A redacted sample:</p>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <div className="rounded-xl bg-[#0a0c17] shadow-lg overflow-hidden mb-20 border border-black/20">
-                <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-black/30">
-                  <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-[#ff5f56]" aria-hidden="true"></span>
-                    <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" aria-hidden="true"></span>
-                    <span className="w-3 h-3 rounded-full bg-[#27c93f]" aria-hidden="true"></span>
-                    <span className="ml-3 text-xs font-mono text-white/60">InvoiceTotals.business-rules.yaml</span>
-                  </div>
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#9b6bf4] text-white">Redacted sample</span>
-                </div>
-                <pre className="px-5 py-5 text-[13px] font-mono text-white/90 overflow-x-auto leading-relaxed whitespace-pre">{`id: BR-001
-title: Line total is quantity x unit price, rounded 2dp (half-up)
-type: calculation
-description: >
-  Each line total = quantity x unit price, rounded to two decimals
-  half-up. Rounding is per line, before the subtotal is summed.
-source_references:
-  - file: src/Billing/InvoiceService.cs   lines: 88-104
-edge_cases:
-  - Negative quantity (credit lines) yields a negative total.
-  - Half-up, not banker's rounding:  2.005 -> 2.01
-confidence: extracted        confirmation: confirmed by Finance Lead
-acceptance:
-  - given: quantity=3,  unitPrice=2.005    expect: total = 6.02
-  - given: quantity=-1, unitPrice=10.00    expect: total = -10.00`}</pre>
-              </div>
-            </FadeIn>
-
             {/* C. How we prove it's right: the parity gate */}
             <FadeIn>
               <h3 className="text-xl font-bold text-[#f6f7ff] mb-2">How we prove it is right</h3>
