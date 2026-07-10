@@ -551,7 +551,7 @@ acceptance:
                   <div>
                     <h4 className="text-sm font-bold uppercase tracking-wider text-[#7030A0] mb-4">The problem</h4>
                     <p className="text-[#666666] leading-relaxed">
-                      The platform ran on an aging stack tied to a CRM runtime heading out of support. Critical billing and accounting rules lived only in the code, and the people who wrote them had moved on. A big-bang rewrite was off the table — firms bill on it every day, so it could not go dark.
+                      The platform's finance and accounting core was tightly coupled to a vendor CRM runtime that was being retired — and years of billing, posting, and cash-receipt logic lived only in the code, maintained by people who had since moved on. A big-bang rewrite was off the table: firms run their billing on it every day, so it could not go dark for a moment.
                     </p>
                   </div>
                 </div>
@@ -559,10 +559,10 @@ acceptance:
                 <div className="mb-12">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-[#7030A0] mb-4">What we did</h4>
                   <p className="text-[#666666] leading-relaxed mb-4">
-                    We ran the V.Two Evolve method end to end. We assessed the system and mapped where the business logic actually lived, then extracted the billing and posting rules into a plain-language specification the client now owns. Working module by module, we rebuilt the logic on a clean, modern data layer <span className="text-[#1A1A1A] font-medium">behind the existing user interface</span> — so the people using it saw no disruption.
+                    We ran the V.Two Evolve method end to end, starting with the highest-risk area — the finance and postings layer. We mapped where the business logic actually lived and extracted the billing, posting, and reconciliation rules into a plain-language specification the client now owns. Working module by module, we rebuilt each on a clean SQL data layer, fully decoupled from the retiring CRM runtime, <span className="text-[#1A1A1A] font-medium">behind the existing user interface</span> — so the people using it every day saw no change.
                   </p>
                   <p className="text-[#666666] leading-relaxed">
-                    Every rebuilt module was proven at parity against the live system with an automated test harness before any legacy code was switched off. Old and new ran in parallel, and cutover happened in small, reversible steps.
+                    Every rebuilt module was proven at parity by an automated harness that replayed real transactions against both the legacy and the modern system, confirming identical results before any legacy code was switched off. Old and new ran in parallel; cutover happened in small, reversible steps.
                   </p>
                 </div>
 
@@ -572,9 +572,9 @@ acceptance:
                       numbers here when cleared to share (e.g. velocity, defect rate). */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                     {[
-                      { head: "Zero downtime", sub: "Platform kept serving firms throughout" },
-                      { head: "Rules recovered", sub: "Business logic documented and client-owned" },
-                      { head: "Parity-proven", sub: "Validated on the live system before legacy retired" },
+                      { head: "Zero downtime", sub: "Firms kept billing throughout the migration" },
+                      { head: "Rules recovered", sub: "Billing & posting logic documented and client-owned" },
+                      { head: "Parity-proven", sub: "Every module verified against live transactions before cutover" },
                     ].map((m) => (
                       <div key={m.head} className="bg-[#F5F0FA] p-6 rounded-lg border border-[#7030A0]/20 text-center">
                         <div className="text-2xl font-extrabold text-[#7030A0] mb-2">{m.head}</div>
