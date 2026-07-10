@@ -89,7 +89,7 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
   );
 }
 
-// "Keep the front, replace the engine" — the strangler-fig migration, visualized.
+// "Keep the front, replace the engine": the strangler-fig migration, visualized.
 function EngineDiagram() {
   const mods = [
     { label: "Rebuilt", kind: "modern" },
@@ -102,9 +102,9 @@ function EngineDiagram() {
   const x = (i: number) => 30 + i * 140;
   return (
     <svg viewBox="0 0 888 268" className="w-full h-auto" role="img"
-      aria-label="Your existing interface stays unchanged while the engine underneath is rebuilt module by module — from legacy to modern — each one proven at parity before the old version is retired.">
+      aria-label="Your existing interface stays unchanged while the engine underneath is rebuilt module by module, from legacy to modern, each one proven at parity before the old version is retired.">
       <rect x="30" y="18" width="828" height="54" rx="14" fill="#F5F0FA" stroke="#7030A0" strokeWidth="1.5" />
-      <text x="444" y="50" textAnchor="middle" fontSize="17" fontWeight="600" fill="#1A1A1A" fontFamily="Inter, sans-serif">Your existing interface — users see no change</text>
+      <text x="444" y="50" textAnchor="middle" fontSize="17" fontWeight="600" fill="#1A1A1A" fontFamily="Inter, sans-serif">Your existing interface stays unchanged</text>
       <line x1="444" y1="72" x2="444" y2="94" stroke="#C9BEE0" strokeWidth="1.5" />
       <line x1="30" y1="94" x2="858" y2="94" stroke="#C9BEE0" strokeWidth="1.5" strokeDasharray="4 5" />
       <text x="858" y="88" textAnchor="end" fontSize="11" fill="#7030A0" fontFamily="Inter, sans-serif" letterSpacing="0.06em">CLEAN INTERFACE</text>
@@ -130,10 +130,10 @@ function EngineDiagram() {
 // The method as a four-stage flow.
 function MethodFlow() {
   const stages = [
-    { n: "1", name: "Understand", phases: "Phases 1–3" },
-    { n: "2", name: "Plan", phases: "Phases 4–5" },
-    { n: "3", name: "Transform", phases: "Phases 6–8" },
-    { n: "4", name: "Land", phases: "Phases 9–10" },
+    { n: "1", name: "Understand", phases: "Phases 1-3" },
+    { n: "2", name: "Plan", phases: "Phases 4-5" },
+    { n: "3", name: "Transform", phases: "Phases 6-8" },
+    { n: "4", name: "Land", phases: "Phases 9-10" },
   ];
   const pw = 190, gap = 46, x0 = 8;
   const px = (i: number) => x0 + i * (pw + gap);
@@ -216,7 +216,7 @@ export default function Home() {
                 {
                   num: "02",
                   title: "Rewrites keep failing",
-                  desc: "Traditional rewrites run long and get cancelled — because they depend on humans re-reading millions of lines of code by hand."
+                  desc: "Traditional rewrites run long and get cancelled, because they depend on humans re-reading millions of lines of code by hand."
                 },
                 {
                   num: "03",
@@ -269,7 +269,7 @@ export default function Home() {
             <FadeIn>
               <SectionHeading label="How we work" title="Not a product. A way of working." />
               <p className="text-xl text-[#666666] max-w-3xl mb-16 leading-relaxed">
-                Not a tool you license — the system, people, and method we bring to every engagement, refined across real client work.
+                Not a tool you license. It is the system, people, and method we bring to every engagement, refined across real client work.
               </p>
             </FadeIn>
             
@@ -372,11 +372,11 @@ export default function Home() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-6 mb-20">
               {[
-                { n: "1", title: "Analyze", badge: "Free", desc: "We map your system, its dependencies, and where the real risk lives. You get a clear picture of what modernizing takes — at no cost and no commitment." },
+                { n: "1", title: "Analyze", badge: "Free", desc: "We map your system, its dependencies, and where the real risk lives. You get a clear picture of what modernizing takes, at no cost and no commitment." },
                 { n: "2", title: "Document", desc: "We recover the business rules buried in your code into clear specifications you own, so the knowledge is no longer trapped in software." },
                 { n: "3", title: "Estimate", desc: "A concrete, phased plan: scope, cost, and milestones you can take to the board. No black boxes, no surprises." },
                 { n: "4", title: "Move", desc: "We modernize incrementally, the strangler-fig way. Your application keeps running the entire time. No big-bang, no downtime, always a way back." },
-                { n: "5", title: "Test", desc: "Every slice is verified against your live system before any old code is retired. Same data, same behavior — proven, then we move on." },
+                { n: "5", title: "Test", desc: "Every slice is verified against your live system before any old code is retired. Same data, same behavior. Proven, then we move on." },
               ].map((step, i) => (
                 <FadeIn key={step.title} delay={0.08 * i}>
                   <div className="bg-white border border-gray-200 rounded-xl p-6 h-full hover:border-[#7030A0] transition-colors shadow-sm flex flex-col">
@@ -399,7 +399,7 @@ export default function Home() {
               {[
                 {
                   title: "Business rule extraction",
-                  desc: "AI reads the code and surfaces the rules the business actually runs on — including ones nobody remembers writing. Reviewed and signed off by client experts.",
+                  desc: "AI reads the code and surfaces the rules the business actually runs on, including ones nobody remembers writing. Reviewed and signed off by client experts.",
                 },
                 {
                   title: "Documentation",
@@ -431,14 +431,14 @@ export default function Home() {
             <FadeIn>
               <SectionHeading label="Inside the work" title="A look at how we actually do it" />
               <p className="text-xl text-[#666666] max-w-3xl mb-16 leading-relaxed -mt-6">
-                Most firms show you a deck. Here is a redacted look at the real method and the artifacts a V.Two Evolve engagement produces — the reason the outcomes hold up.
+                Most firms show you a deck. Here is a redacted look at the real method and the artifacts a V.Two Evolve engagement produces. This is why the outcomes hold up.
               </p>
             </FadeIn>
 
-            {/* A — The method: four stages, ten phases */}
+            {/* A. The method: four stages, ten phases */}
             <FadeIn>
               <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">The method: four stages, ten phases</h3>
-              <p className="text-[#666666] mb-8 max-w-3xl leading-relaxed">Every engagement runs the same defined path — each phase with its own inputs, review gate, and deliverable. The application stays live the entire time.</p>
+              <p className="text-[#666666] mb-8 max-w-3xl leading-relaxed">Every engagement runs the same defined path, each phase with its own inputs, review gate, and deliverable. The application stays live the entire time.</p>
             </FadeIn>
             <FadeIn>
               <div className="mb-10 overflow-x-auto"><div className="min-w-[680px]"><MethodFlow /></div></div>
@@ -469,10 +469,10 @@ export default function Home() {
               ))}
             </div>
 
-            {/* B — A real deliverable (redacted): business-rule extraction */}
+            {/* B. A real deliverable (redacted): business-rule extraction */}
             <FadeIn>
               <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">A real deliverable: recovered business rules</h3>
-              <p className="text-[#666666] mb-8 max-w-3xl leading-relaxed">Logic buried in legacy code is extracted into a plain-language spec you own — each rule cites the exact code it came from and ships with a parity check that proves the rebuild behaves identically. A redacted sample:</p>
+              <p className="text-[#666666] mb-8 max-w-3xl leading-relaxed">Logic buried in legacy code is extracted into a plain-language spec you own. Each rule cites the exact code it came from and ships with a parity check that proves the rebuild behaves identically. A redacted sample:</p>
             </FadeIn>
             <FadeIn delay={0.1}>
               <div className="rounded-xl bg-[#1A1A1A] shadow-lg overflow-hidden mb-20 border border-black/20">
@@ -503,7 +503,7 @@ acceptance:
               </div>
             </FadeIn>
 
-            {/* C — How we prove it's right: the parity gate */}
+            {/* C. How we prove it's right: the parity gate */}
             <FadeIn>
               <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">How we prove it is right</h3>
               <p className="text-[#666666] mb-8 max-w-3xl leading-relaxed">Nothing legacy is switched off until its modern replacement is proven at parity against your live system. Every increment clears five gates before it ships:</p>
@@ -526,7 +526,7 @@ acceptance:
             </div>
             <FadeIn>
               <p className="text-base text-[#7030A0] font-semibold max-w-3xl">
-                Passing unit tests is not the bar. Observed behavior against your running system is — that is what lets us retire legacy code without holding our breath.
+                Passing unit tests is not the bar. Observed behavior against your running system is what lets us retire legacy code without holding our breath.
               </p>
             </FadeIn>
           </div>
@@ -545,13 +545,13 @@ acceptance:
                   <div>
                     <h4 className="text-sm font-bold uppercase tracking-wider text-[#7030A0] mb-4">The client</h4>
                     <p className="text-[#666666] leading-relaxed">
-                      An enterprise <span className="text-[#1A1A1A] font-medium">legal practice-management and finance platform</span> used by law firms to run matters, billing, and accounting — a large on-premise system built up over more than a decade.
+                      An enterprise <span className="text-[#1A1A1A] font-medium">legal practice-management and finance platform</span> used by law firms to run matters, billing, and accounting. A large on-premise system built up over more than a decade.
                     </p>
                   </div>
                   <div>
                     <h4 className="text-sm font-bold uppercase tracking-wider text-[#7030A0] mb-4">The problem</h4>
                     <p className="text-[#666666] leading-relaxed">
-                      The platform's finance and accounting core was tightly coupled to a vendor CRM runtime that was being retired — and years of billing, posting, and cash-receipt logic lived only in the code, maintained by people who had since moved on. A big-bang rewrite was off the table: firms run their billing on it every day, so it could not go dark for a moment.
+                      The platform's finance and accounting core was tightly coupled to a vendor CRM runtime that was being retired, and years of billing, posting, and cash-receipt logic lived only in the code, maintained by people who had since moved on. A big-bang rewrite was off the table: firms run their billing on it every day, so it could not go dark for a moment.
                     </p>
                   </div>
                 </div>
@@ -559,7 +559,7 @@ acceptance:
                 <div className="mb-12">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-[#7030A0] mb-4">What we did</h4>
                   <p className="text-[#666666] leading-relaxed mb-4">
-                    We ran the V.Two Evolve method end to end, starting with the highest-risk area — the finance and postings layer. We mapped where the business logic actually lived and extracted the billing, posting, and reconciliation rules into a plain-language specification the client now owns. Working module by module, we rebuilt each on a clean SQL data layer, fully decoupled from the retiring CRM runtime, <span className="text-[#1A1A1A] font-medium">behind the existing user interface</span> — so the people using it every day saw no change.
+                    We ran the V.Two Evolve method end to end, starting with the highest-risk area: the finance and postings layer. We mapped where the business logic actually lived and extracted the billing, posting, and reconciliation rules into a plain-language specification the client now owns. Working module by module, we rebuilt each on a clean SQL data layer, fully decoupled from the retiring CRM runtime, <span className="text-[#1A1A1A] font-medium">behind the existing user interface</span>, so the people using it every day saw no change.
                   </p>
                   <p className="text-[#666666] leading-relaxed">
                     Every rebuilt module was proven at parity by an automated harness that replayed real transactions against both the legacy and the modern system, confirming identical results before any legacy code was switched off. Old and new ran in parallel; cutover happened in small, reversible steps.
@@ -634,7 +634,7 @@ acceptance:
             <FadeIn>
               <SectionHeading label="Deliverables" title="What you walk away with" />
               <p className="text-xl text-[#666666] max-w-3xl mb-16 leading-relaxed -mt-6">
-                Not just working software — a documented, understood platform your team owns. Every engagement produces:
+                Not just working software, but a documented, understood platform your team owns. Every engagement produces:
               </p>
             </FadeIn>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -645,7 +645,7 @@ acceptance:
                 { d: "Target Architecture Blueprint & ADRs", p: "Phase 4" },
                 { d: "Phased Conversion Roadmap & Estimate", p: "Phase 5" },
                 { d: "Business-Rule Specifications you own", p: "Phases 6 & 10" },
-                { d: "Modernized codebase, delivered incrementally", p: "Phases 6–9" },
+                { d: "Modernized codebase, delivered incrementally", p: "Phases 6-9" },
                 { d: "Test suites & Parity Evidence", p: "Phase 7" },
                 { d: "Deployment Runbook & Rollback Procedure", p: "Phase 9" },
                 { d: "Handoff Package & Knowledge Transfer", p: "Phase 10" },
@@ -694,7 +694,7 @@ acceptance:
                     What if the pilot does not deliver?
                   </AccordionTrigger>
                   <AccordionContent className="text-base text-[#666666] pb-6 leading-relaxed">
-                    Then you found out early — with hard benchmarks — instead of discovering it two years into a rewrite. The pilot is deliberately small and fixed-scope so that is a cheap lesson, not an expensive one.
+                    Then you found out early, with hard benchmarks, instead of discovering it two years into a rewrite. The pilot is deliberately small and fixed-scope so that is a cheap lesson, not an expensive one.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-4" className="border border-gray-200 rounded-lg px-6 data-[state=open]:border-[#7030A0] data-[state=open]:shadow-sm transition-all">
