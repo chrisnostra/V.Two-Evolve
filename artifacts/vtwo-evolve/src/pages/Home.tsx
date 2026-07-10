@@ -283,7 +283,7 @@ export default function Home() {
               <FadeIn delay={0.2}>
                 <div className="bg-white rounded-lg p-8 shadow-sm border-t-4 border-t-[#7030A0] border-l border-r border-b border-gray-100 h-full">
                   <h3 className="text-xl font-bold text-[#1A1A1A] mb-4">Processes</h3>
-                  <p className="text-[#666666] leading-relaxed">The V.Two AI SDLC governs every engagement with defined inputs, outputs, and human review gates.</p>
+                  <p className="text-[#666666] leading-relaxed">The <a href="https://www.vtwo.co/services#ai-enablement" target="_blank" rel="noopener noreferrer" className="text-[#7030A0] font-medium underline underline-offset-2 decoration-[#7030A0]/40 hover:decoration-[#7030A0]">V.Two AI SDLC</a> governs every engagement with defined inputs, outputs, and human review gates.</p>
                 </div>
               </FadeIn>
               <FadeIn delay={0.3}>
@@ -293,6 +293,9 @@ export default function Home() {
                 </div>
               </FadeIn>
             </div>
+            <FadeIn>
+              <p className="text-[#666666] leading-relaxed mt-10 max-w-3xl">V.Two Evolve is the application-modernization edge of V.Two's <a href="https://www.vtwo.co/services#digital-transformation" target="_blank" rel="noopener noreferrer" className="text-[#7030A0] font-medium underline underline-offset-2 decoration-[#7030A0]/40 hover:decoration-[#7030A0]">Digital Transformation practice</a>.</p>
+            </FadeIn>
           </div>
         </section>
 
@@ -625,6 +628,11 @@ acceptance:
                 </FadeIn>
               ))}
             </div>
+            <FadeIn>
+              <p className="mt-10">
+                <a href="https://www.vtwo.co/work" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-[#7030A0] font-semibold hover:text-[#5a2680]">See our work at V.Two <span aria-hidden="true">&rarr;</span></a>
+              </p>
+            </FadeIn>
           </div>
         </section>
 
@@ -752,7 +760,13 @@ acceptance:
             <div className="text-2xl font-bold">
               V.Two <span className="text-[#7030A0]">Evolve</span>
             </div>
-            <div className="flex items-center space-x-6">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+              <a href="https://www.vtwo.co/services" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-[#7030A0] transition-colors font-medium">
+                Services
+              </a>
+              <a href="https://www.vtwo.co/work" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-[#7030A0] transition-colors font-medium">
+                Our work
+              </a>
               <a href="https://www.vtwo.co" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-[#7030A0] transition-colors font-medium">
                 www.vtwo.co
               </a>
