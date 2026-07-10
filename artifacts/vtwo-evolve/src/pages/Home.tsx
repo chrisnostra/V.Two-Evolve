@@ -89,6 +89,78 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
   );
 }
 
+// "Keep the front, replace the engine" — the strangler-fig migration, visualized.
+function EngineDiagram() {
+  const mods = [
+    { label: "Rebuilt", kind: "modern" },
+    { label: "Rebuilt", kind: "modern" },
+    { label: "Migrating", kind: "mid" },
+    { label: "Legacy", kind: "legacy" },
+    { label: "Legacy", kind: "legacy" },
+    { label: "Legacy", kind: "legacy" },
+  ];
+  const x = (i: number) => 30 + i * 140;
+  return (
+    <svg viewBox="0 0 888 268" className="w-full h-auto" role="img"
+      aria-label="Your existing interface stays unchanged while the engine underneath is rebuilt module by module — from legacy to modern — each one proven at parity before the old version is retired.">
+      <rect x="30" y="18" width="828" height="54" rx="14" fill="#F5F0FA" stroke="#7030A0" strokeWidth="1.5" />
+      <text x="444" y="50" textAnchor="middle" fontSize="17" fontWeight="600" fill="#1A1A1A" fontFamily="Inter, sans-serif">Your existing interface — users see no change</text>
+      <line x1="444" y1="72" x2="444" y2="94" stroke="#C9BEE0" strokeWidth="1.5" />
+      <line x1="30" y1="94" x2="858" y2="94" stroke="#C9BEE0" strokeWidth="1.5" strokeDasharray="4 5" />
+      <text x="858" y="88" textAnchor="end" fontSize="11" fill="#7030A0" fontFamily="Inter, sans-serif" letterSpacing="0.06em">CLEAN INTERFACE</text>
+      <text x="30" y="120" fontSize="11" fontWeight="700" fill="#7030A0" fontFamily="Inter, sans-serif" letterSpacing="0.08em">MODERN</text>
+      <text x="858" y="120" textAnchor="end" fontSize="11" fontWeight="700" fill="#9A93A8" fontFamily="Inter, sans-serif" letterSpacing="0.08em">LEGACY</text>
+      {mods.map((m, i) => {
+        const fill = m.kind === "modern" ? "#7030A0" : "#FFFFFF";
+        const stroke = m.kind === "legacy" ? "#E2DEEA" : "#7030A0";
+        const dash = m.kind === "mid" ? "5 4" : undefined;
+        const tcol = m.kind === "modern" ? "#FFFFFF" : m.kind === "mid" ? "#7030A0" : "#9A93A8";
+        return (
+          <g key={i}>
+            <rect x={x(i)} y="132" width="128" height="72" rx="12" fill={fill} stroke={stroke} strokeWidth="1.5" strokeDasharray={dash} />
+            <text x={x(i) + 64} y="173" textAnchor="middle" fontSize="14" fontWeight="600" fill={tcol} fontFamily="Inter, sans-serif">{m.label}</text>
+          </g>
+        );
+      })}
+      <text x="444" y="244" textAnchor="middle" fontSize="13.5" fill="#666666" fontFamily="Inter, sans-serif">Each module is rebuilt and proven at parity against the live system before the legacy version is retired.</text>
+    </svg>
+  );
+}
+
+// The method as a four-stage flow.
+function MethodFlow() {
+  const stages = [
+    { n: "1", name: "Understand", phases: "Phases 1–3" },
+    { n: "2", name: "Plan", phases: "Phases 4–5" },
+    { n: "3", name: "Transform", phases: "Phases 6–8" },
+    { n: "4", name: "Land", phases: "Phases 9–10" },
+  ];
+  const pw = 190, gap = 46, x0 = 8;
+  const px = (i: number) => x0 + i * (pw + gap);
+  return (
+    <svg viewBox="0 0 914 104" className="w-full h-auto" role="img"
+      aria-label="The method runs in four stages: Understand (phases 1 to 3), Plan (phases 4 to 5), Transform (phases 6 to 8), and Land (phases 9 to 10).">
+      <defs>
+        <marker id="mf-arrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#7030A0" />
+        </marker>
+      </defs>
+      {stages.map((s, i) => (
+        <g key={i}>
+          <rect x={px(i)} y="16" width={pw} height="66" rx="16" fill="#FFFFFF" stroke="#7030A0" strokeWidth="1.5" />
+          <circle cx={px(i) + 30} cy="49" r="15" fill="#F5F0FA" />
+          <text x={px(i) + 30} y="54" textAnchor="middle" fontSize="15" fontWeight="700" fill="#7030A0" fontFamily="Inter, sans-serif">{s.n}</text>
+          <text x={px(i) + 56} y="44" fontSize="16" fontWeight="700" fill="#1A1A1A" fontFamily="Inter, sans-serif">{s.name}</text>
+          <text x={px(i) + 56} y="64" fontSize="12.5" fill="#666666" fontFamily="Inter, sans-serif">{s.phases}</text>
+          {i < stages.length - 1 && (
+            <line x1={px(i) + pw + 10} y1="49" x2={px(i) + pw + gap - 12} y2="49" stroke="#7030A0" strokeWidth="1.5" markerEnd="url(#mf-arrow)" />
+          )}
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-white selection:bg-[#7030A0] selection:text-white">
@@ -276,6 +348,11 @@ export default function Home() {
               </FadeIn>
             </div>
             <FadeIn>
+              <div className="mt-12 bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-10">
+                <EngineDiagram />
+              </div>
+            </FadeIn>
+            <FadeIn>
               <p className="text-center text-base text-[#7030A0] font-semibold mt-10">
                 A working, deployed product at the end of every single phase.
               </p>
@@ -362,6 +439,9 @@ export default function Home() {
             <FadeIn>
               <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">The method: four stages, ten phases</h3>
               <p className="text-[#666666] mb-8 max-w-3xl leading-relaxed">Every engagement runs the same defined path — each phase with its own inputs, review gate, and deliverable. The application stays live the entire time.</p>
+            </FadeIn>
+            <FadeIn>
+              <div className="mb-10 overflow-x-auto"><div className="min-w-[680px]"><MethodFlow /></div></div>
             </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-20">
               {[
