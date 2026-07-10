@@ -376,7 +376,15 @@ a:focus-visible,
 button:focus-visible,
 [role="button"]:focus-visible,
 summary:focus-visible {
-  outline: 2px solid #7030A0;
+  outline: 2px solid #9b6bf4;
   outline-offset: 2px;
   border-radius: 6px;
+}
+
+/* V.Two Evolve — dark editorial template. DM Sans body, dark ground. */
+html { background: #070812; }
+body {
+  font-family: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: #070812;
+  color: #eef0ff;
 }
