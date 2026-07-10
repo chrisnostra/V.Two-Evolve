@@ -633,6 +633,72 @@ confirmation: pending`}</pre>
                 A rewrite that "looks right" would use today's tax rate and return <span className="font-mono text-[#b091ff]">null</span> for an untaxed invoice. Both are wrong, and both are invisible until a client's month-end. Because these rules are <span className="text-[#f6f7ff] font-medium">inferred, not certain</span>, we flag them for your domain owner and prove them with a parity harness that replays real historical invoices, so date-sensitive and edge-case behavior is caught before any cutover.
               </p>
             </FadeIn>
+
+            {/* Beyond calculations: authorization and approval-workflow rules */}
+            <FadeIn>
+              <h3 className="text-2xl md:text-3xl font-bold text-[#f6f7ff] tracking-tight mt-24 mb-4">Not just math: who can do what, and when</h3>
+              <p className="text-lg text-[#9096bb] max-w-3xl mb-8 leading-relaxed">
+                The rules that govern authority and approval flows are where the real risk lives, and they are almost never written down. We recover those too.
+              </p>
+            </FadeIn>
+            <FadeIn>
+              <div className="flex flex-wrap gap-2 mb-10">
+                {["calculation", "validation", "authorization", "workflow", "derivation", "constraint"].map((t) => (
+                  <span key={t} className="font-mono text-xs px-3 py-1 rounded-full border border-[#9b6bf4]/30 bg-[#9b6bf4]/10 text-[#b091ff]">{t}</span>
+                ))}
+              </div>
+            </FadeIn>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+              <FadeIn delay={0.05}>
+                <div className="h-full rounded-xl bg-[#0f1122] border border-[#9b6bf4]/40 overflow-hidden">
+                  <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-[#9b6bf4]/10">
+                    <span className="text-xs font-mono text-[#b091ff]">authorization rule</span>
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#b091ff]">Who can do what</span>
+                  </div>
+                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/90 overflow-x-auto leading-relaxed whitespace-pre">{`id: BR-003
+title: Only the responsible partner or a
+  billing manager may write off WIP
+type: authorization
+conditions:
+  - actor.role in
+    [ResponsiblePartner, BillingManager]
+  - amount <= actor.approvalLimit
+edge_cases:
+  - locked matters block all write-offs,
+    even for partners
+  - delegated authority expires with the
+    delegation, not the matter
+source: BillingAuth.cs:112-149`}</pre>
+                </div>
+              </FadeIn>
+              <FadeIn delay={0.15}>
+                <div className="h-full rounded-xl bg-[#0f1122] border border-[#9b6bf4]/40 overflow-hidden">
+                  <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-[#9b6bf4]/10">
+                    <span className="text-xs font-mono text-[#b091ff]">workflow rule</span>
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#b091ff]">Approval flow</span>
+                  </div>
+                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/90 overflow-x-auto leading-relaxed whitespace-pre">{`id: BR-004
+title: A draft bill needs partner approval
+  before it can be finalized
+type: workflow
+states: draft > pending > approved > final
+conditions:
+  - bills over the matter threshold
+    require a second approver
+edge_cases:
+  - a rejected bill returns to draft,
+    not pending; the chain resets
+  - approvals are void if the total
+    changes after sign-off
+source: BillWorkflow.cs:64-120`}</pre>
+                </div>
+              </FadeIn>
+            </div>
+            <FadeIn>
+              <p className="text-base text-[#9096bb] max-w-3xl mt-8 leading-relaxed">
+                These are the rules a rewrite gets subtly wrong: an approval that should have reset, a delegated authority that should have expired, a threshold that quietly moved. Every one is recovered, cited, confirmed, and replayed against real history before it ships.
+              </p>
+            </FadeIn>
           </div>
         </section>
 
