@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, X, AlertTriangle, Check, Minus, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import {
   Accordion,
@@ -179,7 +179,7 @@ export default function Home() {
               ].map((item, i) => (
                 <FadeIn key={item.title} delay={0.1 * (i % 2)}>
                   <div className="bg-white rounded-xl p-8 h-full border border-gray-100 shadow-sm flex gap-4">
-                    <div className="flex-shrink-0 text-2xl leading-none mt-0.5" aria-hidden>⚠️</div>
+                    <AlertTriangle className="flex-shrink-0 w-6 h-6 text-[#7030A0] mt-0.5" aria-hidden="true" />
                     <div>
                       <h3 className="text-lg font-bold text-[#1A1A1A] mb-2">{item.title}</h3>
                       <p className="text-[#666666] leading-relaxed">{item.desc}</p>
@@ -192,7 +192,7 @@ export default function Home() {
         </section>
 
         {/* Section 3 - The proprietary model */}
-        <section id="the-model" className="py-24 bg-gray-50 border-y border-gray-100">
+        <section id="the-model" className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <FadeIn>
               <SectionHeading label="How we work" title="Not a product. A way of working." />
@@ -225,7 +225,7 @@ export default function Home() {
         </section>
 
         {/* Section 3b - Legacy to modern (before/after) */}
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-gray-50 border-y border-gray-100">
           <div className="max-w-7xl mx-auto px-6">
             <FadeIn>
               <SectionHeading label="The approach" title="Modernize the engine without stopping the car." />
@@ -237,7 +237,7 @@ export default function Home() {
               <FadeIn delay={0.1}>
                 <div className="bg-[#FAFAFA] rounded-xl p-8 h-full border border-gray-200">
                   <h3 className="text-lg font-bold text-[#1A1A1A] mb-6 flex items-center gap-2">
-                    <span className="text-[#999999]" aria-hidden="true">✕</span> Legacy &amp; on-prem
+                    <X className="w-5 h-5 text-[#999999]" aria-hidden="true" /> Legacy &amp; on-prem
                   </h3>
                   <ul className="space-y-3">
                     {[
@@ -247,7 +247,7 @@ export default function Home() {
                       "Slow, risky, expensive to change",
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-2 text-[#666666] leading-snug">
-                        <span className="text-[#999999] mt-1 flex-shrink-0" aria-hidden="true">–</span>
+                        <Minus className="w-4 h-4 text-[#999999] mt-0.5 flex-shrink-0" aria-hidden="true" />
                         {item}
                       </li>
                     ))}
@@ -257,7 +257,7 @@ export default function Home() {
               <FadeIn delay={0.2}>
                 <div className="bg-white rounded-xl p-8 h-full border-2 border-[#7030A0] shadow-sm">
                   <h3 className="text-lg font-bold text-[#7030A0] mb-6 flex items-center gap-2">
-                    <span aria-hidden="true">✓</span> Modern &amp; cloud
+                    <Check className="w-5 h-5 text-[#7030A0]" aria-hidden="true" /> Modern &amp; cloud
                   </h3>
                   <ul className="space-y-3">
                     {[
@@ -267,7 +267,7 @@ export default function Home() {
                       "Evergreen, and cheaper to run",
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-2 text-[#1A1A1A] leading-snug">
-                        <span className="text-[#7030A0] mt-1 flex-shrink-0" aria-hidden="true">✓</span>
+                        <Check className="w-4 h-4 text-[#7030A0] mt-0.5 flex-shrink-0" aria-hidden="true" />
                         {item}
                       </li>
                     ))}
@@ -379,7 +379,7 @@ export default function Home() {
                     <ul className="space-y-2">
                       {col.phases.map((p) => (
                         <li key={p} className="flex items-start gap-2 text-sm text-[#666666] leading-snug">
-                          <span className="text-[#7030A0] mt-0.5 flex-shrink-0" aria-hidden="true">›</span>
+                          <ChevronRight className="w-4 h-4 text-[#7030A0] mt-0.5 flex-shrink-0" aria-hidden="true" />
                           {p}
                         </li>
                       ))}
@@ -438,7 +438,7 @@ acceptance:
               ].map((dim, i) => (
                 <FadeIn key={dim} delay={0.08 * i}>
                   <div className="bg-white rounded-lg p-5 border border-gray-100 shadow-sm h-full flex items-start gap-2">
-                    <span className="text-[#7030A0] font-bold flex-shrink-0" aria-hidden="true">✓</span>
+                    <Check className="w-5 h-5 text-[#7030A0] flex-shrink-0" aria-hidden="true" />
                     <span className="text-sm font-medium text-[#1A1A1A] leading-snug">{dim}</span>
                   </div>
                 </FadeIn>
@@ -510,7 +510,7 @@ acceptance:
         </section>
 
         {/* Why V.Two */}
-        <section id="why-vtwo" className="py-24 bg-gray-50 border-y border-gray-100">
+        <section id="why-vtwo" className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             <FadeIn>
               <SectionHeading label="Why V.Two" title="Why clients pick us" />
@@ -572,7 +572,7 @@ acceptance:
               ].map((item, i) => (
                 <FadeIn key={item.d} delay={0.05 * (i % 3)}>
                   <div className="bg-white rounded-lg p-5 h-full border border-gray-100 shadow-sm flex items-start gap-3">
-                    <span className="text-[#7030A0] font-bold flex-shrink-0 mt-0.5" aria-hidden="true">✓</span>
+                    <Check className="w-5 h-5 text-[#7030A0] flex-shrink-0 mt-0.5" aria-hidden="true" />
                     <div>
                       <div className="text-[#1A1A1A] font-semibold leading-snug">{item.d}</div>
                       <div className="text-xs font-mono text-[#7030A0] mt-1">{item.p}</div>
