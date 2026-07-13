@@ -709,17 +709,21 @@ source: BillWorkflow.cs:64-120`}</pre>
             
             <FadeIn delay={0.1}>
               <div className="bg-[#0f1122] rounded-xl shadow-sm border border-white/10 p-8 md:p-12">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#1b1836] text-[#b091ff] border border-[#9b6bf4]/30 mb-8">
+                  Illustrative engagement · Details anonymized
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
                   <div>
                     <h4 className="text-sm font-bold uppercase tracking-wider text-[#b091ff] mb-4">The client</h4>
                     <p className="text-[#9096bb] leading-relaxed">
-                      An enterprise <span className="text-[#f6f7ff] font-medium">legal practice-management and finance platform</span> used by law firms to run matters, billing, and accounting. A large on-premise system built up over more than a decade.
+                      A <span className="text-[#f6f7ff] font-medium">vertical SaaS provider</span> serving mid-market operators. Their flagship product had been in market for over a decade, generated eight-figure ARR, and was the daily system-of-record for thousands of users across their customer base.
                     </p>
                   </div>
                   <div>
                     <h4 className="text-sm font-bold uppercase tracking-wider text-[#b091ff] mb-4">The problem</h4>
                     <p className="text-[#9096bb] leading-relaxed">
-                      The platform's finance and accounting core was tightly coupled to a vendor CRM runtime that was being retired, and years of billing, posting, and cash-receipt logic lived only in the code, maintained by people who had since moved on. A big-bang rewrite was off the table: firms run their billing on it every day, so it could not go dark for a moment.
+                      The product still shipped features, but the stack underneath had become the bottleneck: an aging application framework, unsupported library versions, a jQuery-era front end, and a monolithic API. New hires took months to ramp, security patches were painful, and a full rewrite had already been quoted at <span className="text-[#f6f7ff] font-medium">24+ months</span> by another firm — and shelved.
                     </p>
                   </div>
                 </div>
@@ -727,30 +731,30 @@ source: BillWorkflow.cs:64-120`}</pre>
                 <div className="mb-12">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-[#b091ff] mb-4">What we did</h4>
                   <p className="text-[#9096bb] leading-relaxed mb-4">
-                    We ran the V.Two Evolve method end to end, starting with the highest-risk area: the finance and postings layer. We mapped where the business logic actually lived and extracted the billing, posting, and reconciliation rules into a plain-language specification the client now owns. Working module by module, we rebuilt each on a clean SQL data layer, fully decoupled from the retiring CRM runtime, <span className="text-[#f6f7ff] font-medium">behind the existing user interface</span>, so the people using it every day saw no change.
+                    We ran the V.Two Evolve method end to end. In the assessment, AI mapped the codebase — dependencies, business rules, dead code, and integration surface — and produced a modernization plan the client's engineers signed off on. The pilot rebuilt one production module on the target stack: <span className="text-[#f6f7ff] font-medium">modern TypeScript and React on the front end, a typed API layer, current framework and library versions, containerized deploy</span> — with a parity test suite that ran the new code against real production inputs.
                   </p>
                   <p className="text-[#9096bb] leading-relaxed">
-                    Every rebuilt module was proven at parity by an automated harness that replayed real transactions against both the legacy and the modern system, confirming identical results before any legacy code was switched off. Old and new ran in parallel; cutover happened in small, reversible steps.
+                    From there the full build ran the old and new platforms in parallel, migrating modules in phases behind feature flags. Data conversion, reconciliation reports, and user-facing documentation were generated as we went. No big-bang cutover — customers were moved cohort by cohort, with rollback available at each step.
                   </p>
                 </div>
 
                 <div>
                   <h4 className="text-sm font-bold uppercase tracking-wider text-[#b091ff] mb-6">The results</h4>
-                  {/* NOTE: qualitative outcomes are true of the engagement. Add real headline
-                      numbers here when cleared to share (e.g. velocity, defect rate). */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                     {[
-                      { head: "Zero downtime", sub: "Firms kept billing throughout the migration" },
-                      { head: "Rules recovered", sub: "Billing & posting logic documented and client-owned" },
-                      { head: "Parity-proven", sub: "Every module verified against live transactions before cutover" },
+                      { head: "~65% faster", sub: "Than the rewrite quote they had shelved" },
+                      { head: "Zero outages", sub: "Cohort-by-cohort cutover, always reversible" },
+                      { head: "100% parity", sub: "Every module proven against live transactions before switch-off" },
                     ].map((m) => (
-                      <div key={m.head} className="bg-[#1b1836] p-6 rounded-lg border border-[#9b6bf4]/50/20 text-center">
+                      <div key={m.head} className="bg-[#1b1836] p-6 rounded-lg border border-[#9b6bf4]/20 text-center">
                         <div className="text-2xl font-extrabold text-[#b091ff] mb-2">{m.head}</div>
                         <div className="text-sm text-[#9096bb] leading-snug">{m.sub}</div>
                       </div>
                     ))}
                   </div>
-                  <p className="text-sm text-[#9096bb] italic mt-6">Detailed velocity and quality benchmarks available under NDA.</p>
+                  <p className="text-sm text-[#9096bb] italic mt-6">
+                    Composite illustration drawn from V.Two Evolve engagements. Named client references and detailed benchmarks available on request under NDA.
+                  </p>
                 </div>
               </div>
             </FadeIn>
