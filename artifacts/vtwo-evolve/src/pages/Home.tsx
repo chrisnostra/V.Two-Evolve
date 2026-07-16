@@ -17,7 +17,7 @@ function Nav() {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex-shrink-0">
           <a href="#" className="text-xl font-bold text-[#f6f7ff]">
-            V.Two <span className="text-[#b091ff]">Evolve</span>
+            V.Two <span className="text-[#b091ff]">Elevate</span>
           </a>
         </div>
         
@@ -175,12 +175,12 @@ export default function Home() {
             </FadeIn>
             <FadeIn delay={0.1}>
               <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold text-[#f6f7ff] tracking-tight leading-[1.02] mb-8">
-                Your legacy platforms are a liability. <span className="bg-gradient-to-r from-[#9b6bf4] to-[#f05aae] bg-clip-text text-transparent">V.Two Evolve</span> turns them into an advantage.
+                Your legacy platforms are a liability. <span className="bg-gradient-to-r from-[#9b6bf4] to-[#f05aae] bg-clip-text text-transparent">V.Two Elevate</span> turns them into an advantage.
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="text-xl md:text-2xl text-[#9096bb] mb-12 max-w-3xl mx-auto leading-relaxed">
-                V.Two Evolve modernizes business platforms with AI. Faster than a rewrite. Safer than a lift-and-shift. Priced so the risk sits with us, not you.
+                V.Two Elevate modernizes business platforms with AI. Faster than a rewrite. Safer than a lift-and-shift. Priced so the risk sits with us, not you.
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
@@ -287,7 +287,7 @@ export default function Home() {
               </FadeIn>
             </div>
             <FadeIn>
-              <p className="text-[#9096bb] leading-relaxed mt-10 max-w-3xl">V.Two Evolve is the application-modernization edge of V.Two's <a href="https://www.vtwo.co/services#digital-transformation" target="_blank" rel="noopener noreferrer" className="text-[#b091ff] font-medium underline underline-offset-2 decoration-[#9b6bf4]/40 hover:decoration-[#9b6bf4]">Digital Transformation practice</a>.</p>
+              <p className="text-[#9096bb] leading-relaxed mt-10 max-w-3xl">V.Two Elevate is the application-modernization edge of V.Two's <a href="https://www.vtwo.co/services#digital-transformation" target="_blank" rel="noopener noreferrer" className="text-[#b091ff] font-medium underline underline-offset-2 decoration-[#9b6bf4]/40 hover:decoration-[#9b6bf4]">Digital Transformation practice</a>.</p>
             </FadeIn>
           </div>
         </section>
@@ -723,7 +723,7 @@ source: BillWorkflow.cs:64-120`}</pre>
                   <div>
                     <h4 className="text-sm font-bold uppercase tracking-wider text-[#b091ff] mb-4">The problem</h4>
                     <p className="text-[#9096bb] leading-relaxed">
-                      The product still shipped features, but the stack underneath had become the bottleneck: an aging application framework, unsupported library versions, a jQuery-era front end, and a monolithic API. New hires took months to ramp, security patches were painful, and a full rewrite had already been quoted at <span className="text-[#f6f7ff] font-medium">24+ months</span> by another firm — and shelved.
+                      The product still shipped features, but the stack underneath had become the bottleneck: an aging application framework, unsupported library versions, a jQuery-era front end, and a monolithic API. New hires took months to ramp, security patches were painful, and a full rewrite had already been quoted at <span className="text-[#f6f7ff] font-medium">24+ months</span> by another firm, then shelved.
                     </p>
                   </div>
                 </div>
@@ -731,10 +731,10 @@ source: BillWorkflow.cs:64-120`}</pre>
                 <div className="mb-12">
                   <h4 className="text-sm font-bold uppercase tracking-wider text-[#b091ff] mb-4">What we did</h4>
                   <p className="text-[#9096bb] leading-relaxed mb-4">
-                    We ran the V.Two Evolve method end to end. In the assessment, AI mapped the codebase — dependencies, business rules, dead code, and integration surface — and produced a modernization plan the client's engineers signed off on. The pilot rebuilt one production module on the target stack: <span className="text-[#f6f7ff] font-medium">modern TypeScript and React on the front end, a typed API layer, current framework and library versions, containerized deploy</span> — with a parity test suite that ran the new code against real production inputs.
+                    We ran the V.Two Elevate method end to end. In the assessment, AI mapped the codebase (dependencies, business rules, dead code, and integration surface) and produced a modernization plan the client's engineers signed off on. The pilot rebuilt one production module on the target stack: <span className="text-[#f6f7ff] font-medium">modern TypeScript and React on the front end, a typed API layer, current framework and library versions, containerized deploy</span>, with a parity test suite that ran the new code against real production inputs.
                   </p>
                   <p className="text-[#9096bb] leading-relaxed">
-                    From there the full build ran the old and new platforms in parallel, migrating modules in phases behind feature flags. Data conversion, reconciliation reports, and user-facing documentation were generated as we went. No big-bang cutover — customers were moved cohort by cohort, with rollback available at each step.
+                    From there the full build ran the old and new platforms in parallel, migrating modules in phases behind feature flags. Data conversion, reconciliation reports, and user-facing documentation were generated as we went. No big-bang cutover: customers were moved cohort by cohort, with rollback available at each step.
                   </p>
                 </div>
 
@@ -753,7 +753,7 @@ source: BillWorkflow.cs:64-120`}</pre>
                     ))}
                   </div>
                   <p className="text-sm text-[#9096bb] italic mt-6">
-                    Composite illustration drawn from V.Two Evolve engagements. Named client references and detailed benchmarks available on request under NDA.
+                    Composite illustration drawn from V.Two Elevate engagements. Named client references and detailed benchmarks available on request under NDA.
                   </p>
                 </div>
               </div>
@@ -774,7 +774,7 @@ source: BillWorkflow.cs:64-120`}</pre>
               {[
                 {
                   title: "This is the only thing we do",
-                  desc: "Application modernization with AI is not a side practice for us. It is the work. V.Two Evolve exists because we have done this on real platforms, refined the method each time, and codified what works.",
+                  desc: "Application modernization with AI is not a side practice for us. It is the work. V.Two Elevate exists because we have done this on real platforms, refined the method each time, and codified what works.",
                 },
                 {
                   title: "Fixed bid. Risk removed.",
@@ -855,7 +855,7 @@ source: BillWorkflow.cs:64-120`}</pre>
                     What platforms and languages do you work with?
                   </AccordionTrigger>
                   <AccordionContent className="text-base text-[#9096bb] pb-6 leading-relaxed">
-                    Language-agnostic. We have applied V.Two Evolve across older Java, .NET, and database-centric platforms moving to modern cloud-native architectures.
+                    Language-agnostic. We have applied V.Two Elevate across older Java, .NET, and database-centric platforms moving to modern cloud-native architectures.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2" className="border border-white/10 rounded-lg px-6 data-[state=open]:border-[#9b6bf4]/50 data-[state=open]:shadow-sm transition-all">
@@ -927,7 +927,7 @@ source: BillWorkflow.cs:64-120`}</pre>
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
             <div className="text-2xl font-bold">
-              V.Two <span className="text-[#b091ff]">Evolve</span>
+              V.Two <span className="text-[#b091ff]">Elevate</span>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               <a href="https://www.vtwo.co/services" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-[#b091ff] transition-colors font-medium">
