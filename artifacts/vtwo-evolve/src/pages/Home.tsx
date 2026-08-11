@@ -128,16 +128,16 @@ function EngineDiagram() {
 // The method as a four-stage flow.
 function MethodFlow() {
   const stages = [
-    { n: "1", name: "Understand", phases: "Phases 1-3" },
-    { n: "2", name: "Plan", phases: "Phases 4-5" },
-    { n: "3", name: "Transform", phases: "Phases 6-8" },
-    { n: "4", name: "Land", phases: "Phases 9-10" },
+    { n: "1", name: "Discovery" },
+    { n: "2", name: "Blueprint" },
+    { n: "3", name: "Plan" },
+    { n: "4", name: "Build" },
   ];
   const pw = 190, gap = 46, x0 = 8;
   const px = (i: number) => x0 + i * (pw + gap);
   return (
     <svg viewBox="0 0 914 104" className="w-full h-auto" role="img"
-      aria-label="The method runs in four stages: Understand (phases 1 to 3), Plan (phases 4 to 5), Transform (phases 6 to 8), and Land (phases 9 to 10).">
+      aria-label="The method runs in four stages: Discovery, Blueprint, Plan, and Build.">
       <defs>
         <marker id="mf-arrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
           <path d="M0,0 L6,3 L0,6 Z" fill="#b091ff" />
@@ -148,8 +148,7 @@ function MethodFlow() {
           <rect x={px(i)} y="16" width={pw} height="66" rx="16" fill="#15172c" stroke="rgba(155,107,244,0.55)" strokeWidth="1.5" />
           <circle cx={px(i) + 30} cy="49" r="15" fill="#241a33" />
           <text x={px(i) + 30} y="54" textAnchor="middle" fontSize="15" fontWeight="700" fill="#b091ff" fontFamily="DM Sans, sans-serif">{s.n}</text>
-          <text x={px(i) + 56} y="44" fontSize="16" fontWeight="700" fill="#f6f7ff" fontFamily="DM Sans, sans-serif">{s.name}</text>
-          <text x={px(i) + 56} y="64" fontSize="12.5" fill="#9096bb" fontFamily="DM Sans, sans-serif">{s.phases}</text>
+          <text x={px(i) + 56} y="52" fontSize="16" fontWeight="700" fill="#f6f7ff" fontFamily="DM Sans, sans-serif">{s.name}</text>
           {i < stages.length - 1 && (
             <line x1={px(i) + pw + 10} y1="49" x2={px(i) + pw + gap - 12} y2="49" stroke="#b091ff" strokeWidth="1.5" markerEnd="url(#mf-arrow)" />
           )}
@@ -431,20 +430,20 @@ export default function Home() {
               </p>
             </FadeIn>
 
-            {/* A. The method: four stages, ten phases */}
+            {/* A. The method: four stages */}
             <FadeIn>
-              <h3 className="text-xl font-bold text-[#f6f7ff] mb-2">The method: four stages, ten phases</h3>
-              <p className="text-[#9096bb] mb-8 max-w-3xl leading-relaxed">Every engagement runs the same defined path, each phase with its own inputs, review gate, and deliverable. The application stays live the entire time.</p>
+              <h3 className="text-xl font-bold text-[#f6f7ff] mb-2">The method: four stages</h3>
+              <p className="text-[#9096bb] mb-8 max-w-3xl leading-relaxed">Every engagement runs the same defined path, each stage with its own inputs, review gate, and deliverables. The application stays live the entire time.</p>
             </FadeIn>
             <FadeIn>
               <div className="mb-10 overflow-x-auto"><div className="min-w-[680px]"><MethodFlow /></div></div>
             </FadeIn>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-20">
               {[
-                { stage: "Understand", phases: ["Discovery & assessment", "Architecture analysis", "Dependency & risk"] },
-                { stage: "Plan", phases: ["Target architecture", "Roadmap & estimation"] },
-                { stage: "Transform", phases: ["Business-rule extraction", "Module rebuild", "Parity validation", "Pre-merge preflight"] },
-                { stage: "Land", phases: ["Deployment readiness", "Documentation & handoff"] },
+                { stage: "Discovery", items: ["Discovery & assessment", "Architecture analysis", "Dependency & risk"] },
+                { stage: "Blueprint", items: ["Target Architecture Blueprint", "Phased Conversion Roadmap"] },
+                { stage: "Plan", items: ["Business-rule extraction", "Part-by-part decomposition", "PRDs + implementation plans"] },
+                { stage: "Build", items: ["Module rebuild via Claude Code", "Parity validation", "Deployment readiness", "Documentation & handoff"] },
               ].map((col, i) => (
                 <FadeIn key={col.stage} delay={0.1 * i}>
                   <div className="bg-[#0f1122] rounded-lg p-6 shadow-sm border-t-4 border-t-[#9b6bf4] border-l border-r border-b border-white/10 h-full">
@@ -453,7 +452,7 @@ export default function Home() {
                       <h4 className="text-lg font-bold text-[#f6f7ff]">{col.stage}</h4>
                     </div>
                     <ul className="space-y-2">
-                      {col.phases.map((p) => (
+                      {col.items.map((p) => (
                         <li key={p} className="flex items-start gap-2 text-sm text-[#9096bb] leading-snug">
                           <ChevronRight className="w-4 h-4 text-[#b091ff] mt-0.5 flex-shrink-0" aria-hidden="true" />
                           {p}
@@ -816,23 +815,22 @@ source: BillWorkflow.cs:64-120`}</pre>
             </FadeIn>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {[
-                { d: "Application Assessment Report", p: "Phase 1" },
-                { d: "Architecture, data-source & coverage maps", p: "Phase 2" },
-                { d: "Dependency & Risk Register", p: "Phase 3" },
-                { d: "Target Architecture Blueprint & ADRs", p: "Phase 4" },
-                { d: "Phased Conversion Roadmap & Estimate", p: "Phase 5" },
-                { d: "Business-Rule Specifications you own", p: "Phases 6 & 10" },
-                { d: "Modernized codebase, delivered incrementally", p: "Phases 6-9" },
-                { d: "Test suites & Parity Evidence", p: "Phase 7" },
-                { d: "Deployment Runbook & Rollback Procedure", p: "Phase 9" },
-                { d: "Handoff Package & Knowledge Transfer", p: "Phase 10" },
+                { d: "Application Assessment Report" },
+                { d: "Architecture, data-source & coverage maps" },
+                { d: "Dependency & Risk Register" },
+                { d: "Target Architecture Blueprint & ADRs" },
+                { d: "Phased Conversion Roadmap & Estimate" },
+                { d: "Business-Rule Specifications you own" },
+                { d: "Modernized codebase, delivered incrementally" },
+                { d: "Test suites & Parity Evidence" },
+                { d: "Deployment Runbook & Rollback Procedure" },
+                { d: "Handoff Package & Knowledge Transfer" },
               ].map((item, i) => (
                 <FadeIn key={item.d} delay={0.05 * (i % 3)}>
                   <div className="bg-[#0f1122] rounded-lg p-5 h-full border border-white/10 shadow-sm flex items-start gap-3">
                     <Check className="w-5 h-5 text-[#b091ff] flex-shrink-0 mt-0.5" aria-hidden="true" />
                     <div>
                       <div className="text-[#f6f7ff] font-semibold leading-snug">{item.d}</div>
-                      <div className="text-xs font-mono text-[#b091ff] mt-1">{item.p}</div>
                     </div>
                   </div>
                 </FadeIn>
