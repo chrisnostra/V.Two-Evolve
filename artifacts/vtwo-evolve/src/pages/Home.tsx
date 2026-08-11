@@ -125,6 +125,77 @@ function EngineDiagram() {
   );
 }
 
+// Reusable product screenshot showcase: label + title + optional lede,
+// then a two-image layout (hero + inset) with responsive picture sources,
+// alt text, and captions. Matches the site's dark card aesthetic.
+function ScreenshotShowcase({
+  label,
+  title,
+  lede,
+  hero,
+  inset,
+}: {
+  label: string;
+  title: string;
+  lede?: string;
+  hero: { src: string; src2x: string; alt: string; caption: string };
+  inset: { src: string; src2x: string; alt: string; caption: string };
+}) {
+  return (
+    <div className="my-16">
+      <FadeIn>
+        <div className="mb-8">
+          <span className="inline-block text-xs font-bold tracking-wider uppercase text-[#b091ff] mb-3">{label}</span>
+          <h3 className="text-2xl md:text-3xl font-bold text-[#f6f7ff] tracking-tight leading-tight">{title}</h3>
+          {lede && (
+            <p className="text-base md:text-lg text-[#9096bb] max-w-3xl mt-4 leading-relaxed">{lede}</p>
+          )}
+        </div>
+      </FadeIn>
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
+        <FadeIn delay={0.05}>
+          <figure className="lg:col-span-3 rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black/40">
+            <picture>
+              <source
+                media="(min-width: 768px)"
+                srcSet={`${hero.src} 1x, ${hero.src2x} 2x`}
+              />
+              <img
+                src={hero.src}
+                alt={hero.alt}
+                loading="lazy"
+                className="w-full h-auto block"
+              />
+            </picture>
+            <figcaption className="px-4 py-3 text-sm text-white/60 border-t border-white/10">
+              {hero.caption}
+            </figcaption>
+          </figure>
+        </FadeIn>
+        <FadeIn delay={0.15}>
+          <figure className="lg:col-span-2 rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black/40">
+            <picture>
+              <source
+                media="(min-width: 768px)"
+                srcSet={`${inset.src} 1x, ${inset.src2x} 2x`}
+              />
+              <img
+                src={inset.src}
+                alt={inset.alt}
+                loading="lazy"
+                className="w-full h-auto block"
+              />
+            </picture>
+            <figcaption className="px-4 py-3 text-sm text-white/60 border-t border-white/10">
+              {inset.caption}
+            </figcaption>
+          </figure>
+        </FadeIn>
+      </div>
+    </div>
+  );
+}
+
 // The method as a four-stage flow.
 function MethodFlow() {
   const stages = [
@@ -353,6 +424,24 @@ export default function Home() {
                 A working, deployed product at the end of every single phase.
               </p>
             </FadeIn>
+
+            <ScreenshotShowcase
+              label="Inside the tool"
+              title="See the pipeline in action."
+              lede="The V.Two Evolve workbench extracts business rules from your codebase through an eight-stage pipeline. Progress, cost, and time are tracked live — so you can see exactly how the machine reads your system."
+              hero={{
+                src: "/screenshots/extraction-run.png",
+                src2x: "/screenshots/extraction-run@2x.png",
+                alt: "Evolve Discovery extraction running with live progress: 8-stage pipeline showing stage weights, elapsed time, projected cost, and current stage.",
+                caption: "Live extraction with cost and time tracking across the eight-stage Discovery pipeline.",
+              }}
+              inset={{
+                src: "/screenshots/extraction-stages.png",
+                src2x: "/screenshots/extraction-stages@2x.png",
+                alt: "Evolve Discovery's 8-stage extraction state machine: repository setup, AST parse, entity discovery, pathway detection, story synthesis, rule extraction, embedding, and tech stack detection.",
+                caption: "Eight canonical stages, every run: repo setup, AST parse, entity discovery, pathway detection, story synthesis, rule extraction, embedding, and tech stack.",
+              }}
+            />
           </div>
         </section>
 
@@ -464,6 +553,24 @@ export default function Home() {
                 </FadeIn>
               ))}
             </div>
+
+            <ScreenshotShowcase
+              label="Discovery output"
+              title="Every route, every job, every workflow — as a user story your team recognizes."
+              lede="The Discovery pipeline turns raw code into user stories grouped by the domain entity they act on. Product and engineering read the same list, in the same vocabulary, before a single line of the rebuild is written."
+              hero={{
+                src: "/screenshots/user-stories-list.png",
+                src2x: "/screenshots/user-stories-list@2x.png",
+                alt: "User Stories view showing extracted stories grouped by entity: create Class, read Teacher, create Intern, and dozens more, each with route and rule count.",
+                caption: "Eighty-three user stories, grouped by domain, recovered from a real production codebase.",
+              }}
+              inset={{
+                src: "/screenshots/user-stories-detail.png",
+                src2x: "/screenshots/user-stories-detail@2x.png",
+                alt: "Single user story detail: route, entity, operation, rule count, and the extracted narrative (As a user, I want X, so that Y).",
+                caption: "Expand any domain to see every CRUD story, verb, and short narrative in the same view.",
+              }}
+            />
 
             {/* C. How we prove it's right: the parity gate */}
             <FadeIn>
@@ -697,6 +804,24 @@ source: BillWorkflow.cs:64-120`}</pre>
                 These are the rules a rewrite gets subtly wrong: an approval that should have reset, a delegated authority that should have expired, a threshold that quietly moved. Every one is recovered, cited, confirmed, and replayed against real history before it ships.
               </p>
             </FadeIn>
+
+            <ScreenshotShowcase
+              label="Business rules, live in the tool"
+              title="Business rules, anchored to the workflows that produce them."
+              lede="Every recovered rule points back to the user story it belongs to, and every user story shows exactly which rules govern it. Nothing is orphaned. Nothing is guessed. Every rule is auditable end to end."
+              hero={{
+                src: "/screenshots/business-rules-list.png",
+                src2x: "/screenshots/business-rules-list@2x.png",
+                alt: "Business Rules view: rules grouped by their originating user story, with rule kinds (Validation, Authorization, Business Logic) shown inline.",
+                caption: "Rules grouped by the story that produces them, with rule-kind pills for validation, authorization, and business logic.",
+              }}
+              inset={{
+                src: "/screenshots/business-rules-coverage.png",
+                src2x: "/screenshots/business-rules-coverage@2x.png",
+                alt: "Coverage report: 412 rules across 83 user stories with zero orphaned rules — every rule anchored to a workflow.",
+                caption: "Coverage report: four hundred and twelve rules across eighty-three stories — zero orphans.",
+              }}
+            />
           </div>
         </section>
 
