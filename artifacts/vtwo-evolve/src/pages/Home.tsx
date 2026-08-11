@@ -26,7 +26,6 @@ function Nav() {
           <a href="#inside" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Inside the work</a>
           <a href="#discovery" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Discovery output</a>
           <a href="#the-model" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">How we work</a>
-          <a href="#case-study" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Case study</a>
           <a href="#why-vtwo" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Why V.Two</a>
         </div>
 
@@ -53,7 +52,6 @@ function Nav() {
             <a href="#inside" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Inside the work</a>
             <a href="#discovery" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Discovery output</a>
             <a href="#the-model" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">How we work</a>
-            <a href="#case-study" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Case study</a>
             <a href="#why-vtwo" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Why V.Two</a>
             <a href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center justify-center px-5 py-2 text-base font-semibold text-white bg-gradient-to-r from-[#9b6bf4] to-[#f05aae] rounded-md mx-3">
               Start free
@@ -87,7 +85,7 @@ function FadeIn({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
   );
 }
 
-// "Keep the front, replace the engine": the strangler-fig migration, visualized.
+// "Keep the front, replace the engine": incremental modernization, visualized.
 function EngineDiagram() {
   const mods = [
     { label: "Rebuilt", kind: "modern" },
@@ -100,7 +98,7 @@ function EngineDiagram() {
   const x = (i: number) => 30 + i * 140;
   return (
     <svg viewBox="0 0 888 268" className="w-full h-auto" role="img"
-      aria-label="Your existing interface stays unchanged while the engine underneath is rebuilt module by module, from legacy to modern, each one proven at parity before the old version is retired.">
+      aria-label="Your existing interface stays unchanged while the engine underneath is rebuilt module by module, from legacy to modern. Each increment is verified against the extracted user stories and business rules, and validated on the running system, before the legacy version is retired.">
       <rect x="30" y="18" width="828" height="54" rx="14" fill="#15172c" stroke="rgba(155,107,244,0.55)" strokeWidth="1.5" />
       <text x="444" y="50" textAnchor="middle" fontSize="17" fontWeight="600" fill="#f6f7ff" fontFamily="DM Sans, sans-serif">Your existing interface stays unchanged</text>
       <line x1="444" y1="72" x2="444" y2="94" stroke="rgba(176,145,255,0.35)" strokeWidth="1.5" />
@@ -120,7 +118,7 @@ function EngineDiagram() {
           </g>
         );
       })}
-      <text x="444" y="244" textAnchor="middle" fontSize="13.5" fill="#9096bb" fontFamily="DM Sans, sans-serif">Each module is rebuilt and proven at parity against the live system before the legacy version is retired.</text>
+      <text x="444" y="244" textAnchor="middle" fontSize="13.5" fill="#9096bb" fontFamily="DM Sans, sans-serif">Each module is verified against the extracted user stories and business rules, and validated on the running system, before the legacy version is retired.</text>
     </svg>
   );
 }
@@ -249,19 +247,18 @@ function ScreenshotCarousel({ slides }: { slides: CarouselSlide[] }) {
   );
 }
 
-// The method as a four-stage flow.
+// The method as a three-stage flow.
 function MethodFlow() {
   const stages = [
     { n: "1", name: "Discovery" },
     { n: "2", name: "Blueprint" },
-    { n: "3", name: "Plan" },
-    { n: "4", name: "Build" },
+    { n: "3", name: "Build" },
   ];
-  const pw = 190, gap = 46, x0 = 8;
+  const pw = 240, gap = 56, x0 = 12;
   const px = (i: number) => x0 + i * (pw + gap);
   return (
-    <svg viewBox="0 0 914 104" className="w-full h-auto" role="img"
-      aria-label="The method runs in four stages: Discovery, Blueprint, Plan, and Build.">
+    <svg viewBox="0 0 864 104" className="w-full h-auto" role="img"
+      aria-label="The method runs in three stages: Discovery, Blueprint, and Build.">
       <defs>
         <marker id="mf-arrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
           <path d="M0,0 L6,3 L0,6 Z" fill="#b091ff" />
@@ -342,7 +339,7 @@ export default function Home() {
                 {
                   num: "03",
                   title: "AI changed what's possible",
-                  desc: "AI can read, map, and regenerate codebases at speeds no human team can match; firms that apply it with discipline modernize in months, not years."
+                  desc: "AI can read, map, and help regenerate codebases at speeds no human team can match; firms that apply it with discipline modernize in months, not years."
                 }
               ].map((item, i) => (
                 <FadeIn key={i} delay={0.1 * i}>
@@ -454,20 +451,19 @@ export default function Home() {
               </p>
             </FadeIn>
 
-            {/* A. The method: four stages */}
+            {/* A. The method: three stages */}
             <FadeIn>
-              <h3 className="text-xl font-bold text-[#f6f7ff] mb-2">The method: four stages</h3>
+              <h3 className="text-xl font-bold text-[#f6f7ff] mb-2">The method: three stages</h3>
               <p className="text-[#9096bb] mb-8 max-w-3xl leading-relaxed">Every engagement runs the same defined path, each stage with its own inputs, review gate, and deliverables. The application stays live the entire time.</p>
             </FadeIn>
             <FadeIn>
               <div className="mb-10 overflow-x-auto"><div className="min-w-[680px]"><MethodFlow /></div></div>
             </FadeIn>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-20">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
               {[
-                { stage: "Discovery", items: ["Discovery & assessment", "Architecture analysis", "Dependency & risk"] },
-                { stage: "Blueprint", items: ["Target Architecture Blueprint", "Phased Conversion Roadmap"] },
-                { stage: "Plan", items: ["Business-rule extraction", "Part-by-part decomposition", "PRDs + implementation plans"] },
-                { stage: "Build", items: ["Module rebuild via Claude Code", "Parity validation", "Deployment readiness", "Documentation & handoff"] },
+                { stage: "Discovery", items: ["Discovery & assessment", "Architecture analysis", "Dependency & risk", "Business-rule extraction"] },
+                { stage: "Blueprint", items: ["Target Architecture Blueprint", "Phased Conversion Roadmap", "Part-by-part decomposition", "PRDs + implementation plans"] },
+                { stage: "Build", items: ["Module rebuild via Claude Code", "Verification against stories & rules", "Deployment readiness", "Documentation & handoff"] },
               ].map((col, i) => (
                 <FadeIn key={col.stage} delay={0.1 * i}>
                   <div className="bg-[#0f1122] rounded-lg p-6 shadow-sm border-t-4 border-t-[#9b6bf4] border-l border-r border-b border-white/10 h-full">
@@ -488,14 +484,14 @@ export default function Home() {
               ))}
             </div>
 
-            {/* C. How we prove it's right: the parity gate */}
+            {/* C. How we verify each increment */}
             <FadeIn>
-              <h3 className="text-xl font-bold text-[#f6f7ff] mb-2">How we prove it is right</h3>
-              <p className="text-[#9096bb] mb-8 max-w-3xl leading-relaxed">Nothing legacy is switched off until its modern replacement is proven at parity against your live system. Every increment clears five gates before it ships:</p>
+              <h3 className="text-xl font-bold text-[#f6f7ff] mb-2">How we verify each increment</h3>
+              <p className="text-[#9096bb] mb-8 max-w-3xl leading-relaxed">Nothing legacy is switched off until its modern replacement is verified against the extracted user stories and business rules, and validated on the running system. Every increment clears five gates before it ships:</p>
             </FadeIn>
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-10">
               {[
-                "Parity proven on the live system",
+                "Behavior verified against the extracted stories & rules",
                 "Conforms to house patterns",
                 "Security clean",
                 "No duplicate logic or types",
@@ -511,7 +507,7 @@ export default function Home() {
             </div>
             <FadeIn>
               <p className="text-base text-[#b091ff] font-semibold max-w-3xl">
-                Passing unit tests is not the bar. Observed behavior against your running system is what lets us retire legacy code without holding our breath.
+                Passing unit tests is not the bar. Verifying each increment against the documented stories and rules, and validating it on the running system, is what lets us retire legacy code without holding our breath.
               </p>
             </FadeIn>
           </div>
@@ -569,7 +565,7 @@ export default function Home() {
                 <span className="inline-block text-sm font-bold tracking-wider uppercase text-[#b091ff] mb-3">For the technical team</span>
                 <h3 className="text-3xl md:text-4xl font-bold text-[#f6f7ff] tracking-tight leading-tight">How we recover your business rules</h3>
                 <p className="text-lg text-[#9096bb] max-w-3xl mt-4 leading-relaxed">
-                  The rules your business runs on are buried in legacy code, undocumented, and often known to no one. Here is the actual pipeline: AI reads the code, we recover each rule into a plain-language spec you own, with a citation to the exact source and a test that proves the rebuild behaves identically.
+                  The rules your business runs on are buried in legacy code, undocumented, and often known to no one. Here is the actual pipeline: AI reads the code, we recover each rule into a plain-language spec you own, with a citation to the exact source, so the modern rebuild can be validated against the original behavior.
                 </p>
               </div>
             </FadeIn>
@@ -579,19 +575,22 @@ export default function Home() {
               <FadeIn delay={0.05}>
                 <div className="h-full rounded-xl bg-[#05060d] border border-white/10 overflow-hidden">
                   <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-black/30">
-                    <span className="text-xs font-mono text-[#828aa6]">InvoiceService.cs</span>
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#e0a24a]">Legacy</span>
+                    <span className="text-xs font-mono text-[#828aa6]">server/src/routes/classes.ts</span>
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#e0a24a]">Source</span>
                   </div>
-                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/85 overflow-x-auto leading-relaxed whitespace-pre">{`public decimal CalculateLineTotal(
-    Line line)
-{
-  var raw = line.Quantity
-          * line.UnitPrice;
-  // half-up, per line,
-  // before the subtotal
-  return Math.Round(raw, 2,
-    MidpointRounding.AwayFromZero);
-}`}</pre>
+                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/85 overflow-x-auto leading-relaxed whitespace-pre">{`router.post('/classes', async (req, res) => {
+  const { classroomNumber, teacherId } = req.body;
+
+  // strip anything that isn't
+  // alphanumeric before persisting
+  const clean = classroomNumber
+    .replace(/[^a-zA-Z0-9]/g, '');
+
+  const cls = await db.class.create({
+    data: { classroomNumber: clean, teacherId },
+  });
+  res.json(cls);
+});`}</pre>
                 </div>
               </FadeIn>
 
@@ -602,44 +601,49 @@ export default function Home() {
                     <span className="text-xs font-mono text-[#b091ff]">business-rules.yaml</span>
                     <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#b091ff]">Recovered · owned by you</span>
                   </div>
-                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/90 overflow-x-auto leading-relaxed whitespace-pre">{`id: BR-001
-title: Line total = quantity
-  x unit price, half-up 2dp
-type: calculation
-description: >
-  Rounded to two decimals,
-  half-up, per line, before
-  the subtotal is summed.
-source: InvoiceService.cs:88
-confidence: extracted
-confirmed_by: Finance Lead`}</pre>
+                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/90 overflow-x-auto leading-relaxed whitespace-pre">{`rule_id: BR-Class-Create-SanitizeClassroomNumber
+rule_kind: validation
+trigger: When a class is created
+condition: classroomNumber contains
+  non-alphanumeric characters
+action: Strip non-alphanumeric
+  characters before persisting
+rationale: Classroom numbers must be
+  sortable and comparable across records
+sources:
+  - file: server/src/routes/classes.ts
+    start_line: 42
+    end_line: 58
+confidence: 0.92
+provenance: original
+parent_story_id: US-Class-Create`}</pre>
                 </div>
               </FadeIn>
 
-              {/* 3. Parity check */}
+              {/* 3. Coverage check */}
               <FadeIn delay={0.25}>
                 <div className="h-full rounded-xl bg-[#05060d] border border-white/10 overflow-hidden">
                   <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-black/30">
-                    <span className="text-xs font-mono text-[#828aa6]">parity-check</span>
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#4fc49a]">Proven vs live</span>
+                    <span className="text-xs font-mono text-[#828aa6]">coverage-check</span>
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#4fc49a]">Anchored to stories</span>
                   </div>
-                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/85 overflow-x-auto leading-relaxed whitespace-pre">{`acceptance:
-  - given:  qty 3 @ 2.005
-    expect: total = 6.02
-  - given:  qty -1 @ 10.00
-    expect: total = -10.00
+                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/85 overflow-x-auto leading-relaxed whitespace-pre">{`# coverage-check
+total_stories: 83
+total_rules: 412
+orphan_rules: 0
+stories_without_rules: 0
 
-# every rule replayed
-# against the live system
-# before any legacy code
-# is switched off`}</pre>
+# Every rule anchored to a story.
+# Every story has explicit rules.
+# Nothing lost between extraction
+# and specification.`}</pre>
                 </div>
               </FadeIn>
             </div>
 
             <FadeIn>
               <p className="text-base text-[#9096bb] max-w-3xl mt-10 leading-relaxed">
-                The export format is a machine-checkable schema, so every recovered rule is validated, cited, and signed off by your domain experts before it drives a single line of the rebuild. You end up owning a complete, plain-language specification of a system that used to live only in code.
+                The export format is a machine-checkable schema, so every recovered rule is validated, cited, and reviewed and curated by your domain experts before it drives a single line of the rebuild. You end up owning a complete, plain-language specification of a system that used to live only in code.
               </p>
             </FadeIn>
 
@@ -654,21 +658,19 @@ confirmed_by: Finance Lead`}</pre>
               <FadeIn delay={0.05}>
                 <div className="h-full rounded-xl bg-[#05060d] border border-white/10 overflow-hidden">
                   <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-black/30">
-                    <span className="text-xs font-mono text-[#828aa6]">TaxCalculator.cs</span>
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#e0a24a]">Legacy</span>
+                    <span className="text-xs font-mono text-[#828aa6]">server/src/lib/tax.ts</span>
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#e0a24a]">Source</span>
                   </div>
-                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/85 overflow-x-auto leading-relaxed whitespace-pre">{`public decimal ComputeTax(Invoice inv)
-{
-  var taxable = inv.Lines
-    .Where(l => l.IsTaxable)
-    .Sum(l => l.Total);
+                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/85 overflow-x-auto leading-relaxed whitespace-pre">{`export function computeTax(invoice) {
+  const taxable = invoice.lines
+    .filter(l => l.isTaxable)
+    .reduce((sum, l) => sum + l.total, 0);
 
   // rate as of the invoice date,
   // NOT today's rate
-  var rate = RateOn(inv.Date);
+  const rate = rateOn(invoice.date);
 
-  return Math.Round(taxable * rate, 2,
-    MidpointRounding.AwayFromZero);
+  return round2(taxable * rate);
 }`}</pre>
                 </div>
               </FadeIn>
@@ -678,27 +680,30 @@ confirmed_by: Finance Lead`}</pre>
                     <span className="text-xs font-mono text-[#b091ff]">business-rules.yaml</span>
                     <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#e0a24a]">Needs domain sign-off</span>
                   </div>
-                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/90 overflow-x-auto leading-relaxed whitespace-pre">{`id: BR-002
-title: Tax applies only to taxable
-  lines, at the invoice-dated rate
-type: calculation
-conditions:
-  - only lines where isTaxable = true
-edge_cases:
-  - no taxable lines -> tax = 0.00
-    (not null)
-  - back-dated invoices use the rate
-    in effect on the invoice date,
-    not today's rate
-source: TaxCalculator.cs:40-77
-confidence: inferred
-confirmation: pending`}</pre>
+                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/90 overflow-x-auto leading-relaxed whitespace-pre">{`rule_id: BR-Invoice-Tax-DateScopedRate
+rule_kind: business_logic
+trigger: When an invoice is finalized
+condition: invoice contains lines where
+  isTaxable = true
+action: Sum taxable-line totals and
+  multiply by the rate in effect on the
+  invoice date; return 0.00 (not null)
+  when no lines are taxable
+rationale: Back-dated invoices must use
+  the historical rate, not today's rate
+sources:
+  - file: server/src/lib/tax.ts
+    start_line: 40
+    end_line: 77
+confidence: 0.71
+provenance: inferred
+parent_story_id: US-Invoice-Finalize`}</pre>
                 </div>
               </FadeIn>
             </div>
             <FadeIn>
               <p className="text-base text-[#9096bb] max-w-3xl mt-8 leading-relaxed">
-                A rewrite that "looks right" would use today's tax rate and return <span className="font-mono text-[#b091ff]">null</span> for an untaxed invoice. Both are wrong, and both are invisible until a client's month-end. Because these rules are <span className="text-[#f6f7ff] font-medium">inferred, not certain</span>, we flag them for your domain owner and prove them with a parity harness that replays real historical invoices, so date-sensitive and edge-case behavior is caught before any cutover.
+                A rewrite that "looks right" would use today's tax rate and return <span className="font-mono text-[#b091ff]">null</span> for an untaxed invoice. Both are wrong, and both are invisible until a client's month-end. Because these rules are <span className="text-[#f6f7ff] font-medium">inferred, not certain</span>, we flag them for the domain owner to confirm before the rebuild starts.
               </p>
             </FadeIn>
 
@@ -711,7 +716,7 @@ confirmation: pending`}</pre>
             </FadeIn>
             <FadeIn>
               <div className="flex flex-wrap gap-2 mb-10">
-                {["calculation", "validation", "authorization", "workflow", "derivation", "constraint"].map((t) => (
+                {["validation", "authorization", "business_logic", "data_integrity", "workflow", "other"].map((t) => (
                   <span key={t} className="font-mono text-xs px-3 py-1 rounded-full border border-[#9b6bf4]/30 bg-[#9b6bf4]/10 text-[#b091ff]">{t}</span>
                 ))}
               </div>
@@ -723,20 +728,27 @@ confirmation: pending`}</pre>
                     <span className="text-xs font-mono text-[#b091ff]">authorization rule</span>
                     <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#b091ff]">Who can do what</span>
                   </div>
-                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/90 overflow-x-auto leading-relaxed whitespace-pre">{`id: BR-003
-title: Only the responsible partner or a
-  billing manager may write off WIP
-type: authorization
-conditions:
-  - actor.role in
-    [ResponsiblePartner, BillingManager]
-  - amount <= actor.approvalLimit
-edge_cases:
-  - locked matters block all write-offs,
-    even for partners
-  - delegated authority expires with the
-    delegation, not the matter
-source: BillingAuth.cs:112-149`}</pre>
+                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/90 overflow-x-auto leading-relaxed whitespace-pre">{`rule_id: BR-Billing-WriteOffWip-AuthorizedRoles
+rule_kind: authorization
+trigger: When a user attempts to write
+  off WIP on a matter
+condition: actor.role in
+  [ResponsiblePartner, BillingManager]
+  AND amount <= actor.approvalLimit
+  AND matter.status != 'locked'
+action: Allow the write-off; otherwise
+  reject with a permission error
+rationale: Locked matters block all
+  write-offs, and delegated authority
+  expires with the delegation, not the
+  matter
+sources:
+  - file: server/src/routes/billing.ts
+    start_line: 112
+    end_line: 149
+confidence: 0.68
+provenance: inferred
+parent_story_id: US-Billing-WriteOffWip`}</pre>
                 </div>
               </FadeIn>
               <FadeIn delay={0.15}>
@@ -745,26 +757,34 @@ source: BillingAuth.cs:112-149`}</pre>
                     <span className="text-xs font-mono text-[#b091ff]">workflow rule</span>
                     <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#b091ff]">Approval flow</span>
                   </div>
-                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/90 overflow-x-auto leading-relaxed whitespace-pre">{`id: BR-004
-title: A draft bill needs partner approval
-  before it can be finalized
-type: workflow
-states: draft > pending > approved > final
-conditions:
-  - bills over the matter threshold
-    require a second approver
-edge_cases:
-  - a rejected bill returns to draft,
-    not pending; the chain resets
-  - approvals are void if the total
-    changes after sign-off
-source: BillWorkflow.cs:64-120`}</pre>
+                  <pre className="px-5 py-5 text-[12.5px] font-mono text-white/90 overflow-x-auto leading-relaxed whitespace-pre">{`rule_id: BR-Bill-Finalize-PartnerApprovalChain
+rule_kind: workflow
+trigger: When a draft bill is submitted
+  for finalization
+condition: bill.state transitions across
+  draft → pending → approved → final;
+  bills over matter.threshold require a
+  second approver
+action: Advance the bill through the
+  approval chain; a rejected bill returns
+  to draft (not pending) and the chain
+  resets; approvals are voided if the
+  total changes after sign-off
+rationale: Approval authority is scoped
+  to the amount at time of sign-off
+sources:
+  - file: server/src/lib/bill-workflow.ts
+    start_line: 64
+    end_line: 120
+confidence: 0.74
+provenance: inferred
+parent_story_id: US-Bill-Finalize`}</pre>
                 </div>
               </FadeIn>
             </div>
             <FadeIn>
               <p className="text-base text-[#9096bb] max-w-3xl mt-8 leading-relaxed">
-                These are the rules a rewrite gets subtly wrong: an approval that should have reset, a delegated authority that should have expired, a threshold that quietly moved. Every one is recovered, cited, confirmed, and replayed against real history before it ships.
+                These are the rules a rewrite gets subtly wrong: an approval that should have reset, a delegated authority that should have expired, a threshold that quietly moved. Every one is recovered, cited, and reviewed against the running system before the rebuild ships.
               </p>
             </FadeIn>
 
@@ -776,6 +796,9 @@ source: BillWorkflow.cs:64-120`}</pre>
           <div className="max-w-7xl mx-auto px-6">
             <FadeIn>
               <SectionHeading label="How we work" title="Not a product. A way of working." />
+              <p className="text-xl text-[#f6f7ff] max-w-3xl mb-6 leading-relaxed font-medium">
+                Evolve is two things: a Discovery product that reads your codebase, and a delivery method for the modern rebuild.
+              </p>
               <p className="text-xl text-[#9096bb] max-w-3xl mb-16 leading-relaxed">
                 Modernization at this pace was not possible three years ago. Large language models, agent workflows, AST parsing, and semantic search over code have changed what a small, senior team can hold in view at once. Evolve is how we put those capabilities to work, on real production systems, with humans in the loop where it matters.
               </p>
@@ -791,79 +814,18 @@ source: BillWorkflow.cs:64-120`}</pre>
               <FadeIn delay={0.2}>
                 <div className="bg-[#0f1122] rounded-lg p-8 shadow-sm border-t-4 border-t-[#9b6bf4] border-l border-r border-b border-white/10 h-full">
                   <h3 className="text-xl font-bold text-[#f6f7ff] mb-4">Context</h3>
-                  <p className="text-[#9096bb] leading-relaxed">How we gather what the model needs to be useful. Code, via tree-sitter AST parsing and dependency graphs. History, via git and prior decisions. People, via SME interviews. AI lets a small team hold all of that in view at once — the thing no human team could do by hand.</p>
+                  <p className="text-[#9096bb] leading-relaxed">How we gather what the model needs to be useful. Code, via tree-sitter AST parsing and dependency graphs. Prior architectural decisions, via the ADR log. People, via SME interviews. AI lets a small team hold all of that in view at once — the thing no human team could do by hand.</p>
                 </div>
               </FadeIn>
               <FadeIn delay={0.3}>
                 <div className="bg-[#0f1122] rounded-lg p-8 shadow-sm border-t-4 border-t-[#9b6bf4] border-l border-r border-b border-white/10 h-full">
                   <h3 className="text-xl font-bold text-[#f6f7ff] mb-4">Methods</h3>
-                  <p className="text-[#9096bb] leading-relaxed">The repeatable AI-driven techniques. Rule extraction with two-pass LLM synthesis. Semantic search across the codebase via embeddings. Architect-in-the-loop code generation. Strangler-fig migration paths that let old and new run side by side. Governed end to end by the <a href="https://www.vtwo.co/services#ai-enablement" target="_blank" rel="noopener noreferrer" className="text-[#b091ff] font-medium underline underline-offset-2 decoration-[#9b6bf4]/40 hover:decoration-[#9b6bf4]">V.Two AI SDLC</a>.</p>
+                  <p className="text-[#9096bb] leading-relaxed">The repeatable AI-driven techniques. Rule extraction with two-pass LLM synthesis. Semantic search across the codebase via embeddings. Architect-in-the-loop code generation. Incremental cutover paths that let old and new run side by side. Governed end to end by the <a href="https://www.vtwo.co/services#ai-enablement" target="_blank" rel="noopener noreferrer" className="text-[#b091ff] font-medium underline underline-offset-2 decoration-[#9b6bf4]/40 hover:decoration-[#9b6bf4]">V.Two AI SDLC</a>.</p>
                 </div>
               </FadeIn>
             </div>
             <FadeIn>
               <p className="text-[#9096bb] leading-relaxed mt-10 max-w-3xl">V.Two Evolve is the application-modernization edge of V.Two's <a href="https://www.vtwo.co/services#digital-transformation" target="_blank" rel="noopener noreferrer" className="text-[#b091ff] font-medium underline underline-offset-2 decoration-[#9b6bf4]/40 hover:decoration-[#9b6bf4]">Digital Transformation practice</a>.</p>
-            </FadeIn>
-          </div>
-        </section>
-
-        {/* Section 5 - Case study */}
-        <section id="case-study" className="py-24 bg-[#0a0c17] border-y border-white/10">
-          <div className="max-w-7xl mx-auto px-6">
-            <FadeIn>
-              <SectionHeading label="Case study" title="Proven in production" />
-            </FadeIn>
-            
-            <FadeIn delay={0.1}>
-              <div className="bg-[#0f1122] rounded-xl shadow-sm border border-white/10 p-8 md:p-12">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#1b1836] text-[#b091ff] border border-[#9b6bf4]/30 mb-8">
-                  Illustrative engagement · Details anonymized
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-                  <div>
-                    <h4 className="text-sm font-bold uppercase tracking-wider text-[#b091ff] mb-4">The client</h4>
-                    <p className="text-[#9096bb] leading-relaxed">
-                      A <span className="text-[#f6f7ff] font-medium">vertical SaaS provider</span> serving mid-market operators. Their flagship product had been in market for over a decade, generated eight-figure ARR, and was the daily system-of-record for thousands of users across their customer base.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold uppercase tracking-wider text-[#b091ff] mb-4">The problem</h4>
-                    <p className="text-[#9096bb] leading-relaxed">
-                      The product still shipped features, but the stack underneath had become the bottleneck: an aging application framework, unsupported library versions, a jQuery-era front end, and a monolithic API. New hires took months to ramp, security patches were painful, and a full rewrite had already been quoted at <span className="text-[#f6f7ff] font-medium">24+ months</span> by another firm — and shelved.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mb-12">
-                  <h4 className="text-sm font-bold uppercase tracking-wider text-[#b091ff] mb-4">What we did</h4>
-                  <p className="text-[#9096bb] leading-relaxed mb-4">
-                    We ran the V.Two Evolve method end to end. In the assessment, AI mapped the codebase — dependencies, business rules, dead code, and integration surface — and produced a modernization plan the client's engineers signed off on. The pilot rebuilt one production module on the target stack: <span className="text-[#f6f7ff] font-medium">modern TypeScript and React on the front end, a typed API layer, current framework and library versions, containerized deploy</span> — with a parity test suite that ran the new code against real production inputs.
-                  </p>
-                  <p className="text-[#9096bb] leading-relaxed">
-                    From there the full build ran the old and new platforms in parallel, migrating modules in phases behind feature flags. Data conversion, reconciliation reports, and user-facing documentation were generated as we went. No big-bang cutover — customers were moved cohort by cohort, with rollback available at each step.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="text-sm font-bold uppercase tracking-wider text-[#b091ff] mb-6">The results</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    {[
-                      { head: "~65% faster", sub: "Than the rewrite quote they had shelved" },
-                      { head: "Zero outages", sub: "Cohort-by-cohort cutover, always reversible" },
-                      { head: "100% parity", sub: "Every module proven against live transactions before switch-off" },
-                    ].map((m) => (
-                      <div key={m.head} className="bg-[#1b1836] p-6 rounded-lg border border-[#9b6bf4]/20 text-center">
-                        <div className="text-2xl font-extrabold text-[#b091ff] mb-2">{m.head}</div>
-                        <div className="text-sm text-[#9096bb] leading-snug">{m.sub}</div>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="text-sm text-[#9096bb] italic mt-6">
-                    Composite illustration drawn from V.Two Evolve engagements. Named client references and detailed benchmarks available on request under NDA.
-                  </p>
-                </div>
-              </div>
             </FadeIn>
           </div>
         </section>
@@ -893,7 +855,7 @@ source: BillWorkflow.cs:64-120`}</pre>
                 },
                 {
                   title: "References, on request",
-                  desc: "We'll connect you directly with clients whose production systems we've modernized. Ask.",
+                  desc: "Client references available on request.",
                 },
               ].map((card, i) => (
                 <FadeIn key={card.title} delay={0.1 * i}>
@@ -930,7 +892,7 @@ source: BillWorkflow.cs:64-120`}</pre>
                 { d: "Phased Conversion Roadmap & Estimate" },
                 { d: "Business-Rule Specifications you own" },
                 { d: "Modernized codebase, delivered incrementally" },
-                { d: "Test suites & Parity Evidence" },
+                { d: "Acceptance Criteria & Rule Evidence" },
                 { d: "Deployment Runbook & Rollback Procedure" },
                 { d: "Handoff Package & Knowledge Transfer" },
               ].map((item, i) => (
@@ -961,7 +923,7 @@ source: BillWorkflow.cs:64-120`}</pre>
                     What platforms and languages do you work with?
                   </AccordionTrigger>
                   <AccordionContent className="text-base text-[#9096bb] pb-6 leading-relaxed">
-                    Language-agnostic. We have applied V.Two Evolve across older Java, .NET, and database-centric platforms moving to modern cloud-native architectures.
+                    Today, V.Two Evolve supports JavaScript, TypeScript, and PHP (Laravel). The method itself is language-agnostic — additional stacks (Java, .NET, COBOL) are added per engagement.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2" className="border border-white/10 rounded-lg px-6 data-[state=open]:border-[#9b6bf4]/50 data-[state=open]:shadow-sm transition-all">
