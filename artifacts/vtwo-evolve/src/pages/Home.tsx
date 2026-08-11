@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "wouter";
-import { Menu, X, AlertTriangle, Check, Minus, ChevronRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { Menu, X, AlertTriangle, Check, Minus, ChevronRight, ChevronLeft } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Accordion,
   AccordionContent,
@@ -23,9 +23,9 @@ function Nav() {
         
         <div className="hidden md:flex items-center space-x-8">
           <a href="#why-now" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Why now</a>
-          <a href="#approach" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Approach</a>
+          <a href="#the-model" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">How we work</a>
           <a href="#inside" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Inside the work</a>
-          <a href="#business-rules" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Business rules</a>
+          <a href="#discovery" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Discovery output</a>
           <a href="#case-study" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Case study</a>
           <a href="#why-vtwo" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Why V.Two</a>
         </div>
@@ -50,9 +50,9 @@ function Nav() {
         <div className="md:hidden bg-[#0f1122] border-b border-white/10">
           <div className="px-4 pt-2 pb-6 space-y-2 flex flex-col">
             <a href="#why-now" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Why now</a>
-            <a href="#approach" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Approach</a>
+            <a href="#the-model" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">How we work</a>
             <a href="#inside" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Inside the work</a>
-            <a href="#business-rules" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Business rules</a>
+            <a href="#discovery" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Discovery output</a>
             <a href="#case-study" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Case study</a>
             <a href="#why-vtwo" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Why V.Two</a>
             <a href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center justify-center px-5 py-2 text-base font-semibold text-white bg-gradient-to-r from-[#9b6bf4] to-[#f05aae] rounded-md mx-3">
@@ -196,6 +196,130 @@ function ScreenshotShowcase({
   );
 }
 
+// Large screenshot carousel for the merged Discovery Output section.
+// Full-width, keyboard-navigable, swipe-friendly, with prev/next + dot indicators.
+type CarouselSlide = {
+  src: string;
+  src2x: string;
+  alt: string;
+  title: string;
+  caption: string;
+};
+
+function ScreenshotCarousel({ slides }: { slides: CarouselSlide[] }) {
+  const [index, setIndex] = React.useState(0);
+  const [direction, setDirection] = React.useState(0);
+  const touchStartX = React.useRef<number | null>(null);
+
+  const go = React.useCallback((next: number) => {
+    setDirection(next > index ? 1 : -1);
+    setIndex(((next % slides.length) + slides.length) % slides.length);
+  }, [index, slides.length]);
+
+  const prev = React.useCallback(() => go(index - 1), [go, index]);
+  const next = React.useCallback(() => go(index + 1), [go, index]);
+
+  React.useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [prev, next]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current == null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) > 40) {
+      if (dx < 0) next();
+      else prev();
+    }
+    touchStartX.current = null;
+  };
+
+  const active = slides[index];
+
+  return (
+    <div
+      className="relative w-full"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Discovery output screenshots"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
+      <figure className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black/40">
+        <div className="relative aspect-[16/10] md:aspect-[16/9] w-full bg-[#05060d] overflow-hidden">
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.picture
+              key={active.src}
+              custom={direction}
+              initial={{ opacity: 0, x: direction > 0 ? 40 : -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction > 0 ? -40 : 40 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <source
+                media="(min-width: 768px)"
+                srcSet={`${active.src} 1x, ${active.src2x} 2x`}
+              />
+              <img
+                src={active.src}
+                alt={active.alt}
+                className="w-full h-full object-contain object-center block"
+                loading="lazy"
+              />
+            </motion.picture>
+          </AnimatePresence>
+
+          <button
+            type="button"
+            onClick={prev}
+            aria-label="Previous screenshot"
+            className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center w-11 h-11 rounded-full bg-black/60 border border-white/15 text-white/90 hover:bg-black/80 hover:border-[#9b6bf4]/60 hover:text-[#b091ff] transition-colors backdrop-blur"
+          >
+            <ChevronLeft className="w-6 h-6" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={next}
+            aria-label="Next screenshot"
+            className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center w-11 h-11 rounded-full bg-black/60 border border-white/15 text-white/90 hover:bg-black/80 hover:border-[#9b6bf4]/60 hover:text-[#b091ff] transition-colors backdrop-blur"
+          >
+            <ChevronRight className="w-6 h-6" aria-hidden="true" />
+          </button>
+        </div>
+        <figcaption className="px-5 py-4 border-t border-white/10 bg-[#0f1122]/60">
+          <div className="text-sm font-bold text-[#b091ff] uppercase tracking-wider mb-1">{active.title}</div>
+          <div className="text-sm text-white/70 leading-snug">{active.caption}</div>
+        </figcaption>
+      </figure>
+
+      <div className="flex items-center justify-center gap-2 mt-6">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => go(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            aria-current={i === index}
+            className={`h-2 rounded-full transition-all ${
+              i === index
+                ? "w-8 bg-[#b091ff]"
+                : "w-2 bg-white/25 hover:bg-white/50"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // The method as a four-stage flow.
 function MethodFlow() {
   const stages = [
@@ -326,33 +450,33 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 3 - The proprietary model */}
+        {/* Section 3 - The proprietary model (AI-native way of working) */}
         <section id="the-model" className="py-24 bg-[#070812]">
           <div className="max-w-7xl mx-auto px-6">
             <FadeIn>
               <SectionHeading label="How we work" title="Not a product. A way of working." />
               <p className="text-xl text-[#9096bb] max-w-3xl mb-16 leading-relaxed">
-                Not a tool you license. It is the system, people, and method we bring to every engagement, refined across real client work.
+                Modernization at this pace was not possible three years ago. Large language models, agent workflows, AST parsing, and semantic search over code have changed what a small, senior team can hold in view at once. Evolve is how we put those capabilities to work, on real production systems, with humans in the loop where it matters.
               </p>
             </FadeIn>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <FadeIn delay={0.1}>
                 <div className="bg-[#0f1122] rounded-lg p-8 shadow-sm border-t-4 border-t-[#9b6bf4] border-l border-r border-b border-white/10 h-full">
                   <h3 className="text-xl font-bold text-[#f6f7ff] mb-4">Skills</h3>
-                  <p className="text-[#9096bb] leading-relaxed">Codified reusable AI skills that map dependencies, extract business rules, regenerate logic on a modern stack with tests.</p>
+                  <p className="text-[#9096bb] leading-relaxed">The human + AI craft. Architects who know how to prompt, review, and steer LLMs against a real codebase — deep familiarity with legacy patterns and a working taste for what to preserve versus rewrite. The AI is the leverage; the judgment is ours.</p>
                 </div>
               </FadeIn>
               <FadeIn delay={0.2}>
                 <div className="bg-[#0f1122] rounded-lg p-8 shadow-sm border-t-4 border-t-[#9b6bf4] border-l border-r border-b border-white/10 h-full">
-                  <h3 className="text-xl font-bold text-[#f6f7ff] mb-4">Processes</h3>
-                  <p className="text-[#9096bb] leading-relaxed">The <a href="https://www.vtwo.co/services#ai-enablement" target="_blank" rel="noopener noreferrer" className="text-[#b091ff] font-medium underline underline-offset-2 decoration-[#9b6bf4]/40 hover:decoration-[#9b6bf4]">V.Two AI SDLC</a> governs every engagement with defined inputs, outputs, and human review gates.</p>
+                  <h3 className="text-xl font-bold text-[#f6f7ff] mb-4">Context</h3>
+                  <p className="text-[#9096bb] leading-relaxed">How we gather what the model needs to be useful. Code, via tree-sitter AST parsing and dependency graphs. History, via git and prior decisions. People, via SME interviews. AI lets a small team hold all of that in view at once — the thing no human team could do by hand.</p>
                 </div>
               </FadeIn>
               <FadeIn delay={0.3}>
                 <div className="bg-[#0f1122] rounded-lg p-8 shadow-sm border-t-4 border-t-[#9b6bf4] border-l border-r border-b border-white/10 h-full">
                   <h3 className="text-xl font-bold text-[#f6f7ff] mb-4">Methods</h3>
-                  <p className="text-[#9096bb] leading-relaxed">Proven patterns for sequencing: what to modernize first, running old and new in parallel, staged cutover with no big-bang weekend.</p>
+                  <p className="text-[#9096bb] leading-relaxed">The repeatable AI-driven techniques. Rule extraction with two-pass LLM synthesis. Semantic search across the codebase via embeddings. Architect-in-the-loop code generation. Strangler-fig migration paths that let old and new run side by side. Governed end to end by the <a href="https://www.vtwo.co/services#ai-enablement" target="_blank" rel="noopener noreferrer" className="text-[#b091ff] font-medium underline underline-offset-2 decoration-[#9b6bf4]/40 hover:decoration-[#9b6bf4]">V.Two AI SDLC</a>.</p>
                 </div>
               </FadeIn>
             </div>
@@ -444,72 +568,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 4 - Our approach */}
-        <section id="approach" className="py-24 bg-[#070812]">
-          <div className="max-w-7xl mx-auto px-6">
-            <FadeIn>
-              <SectionHeading label="Our approach" title="Five steps. The first one's free." />
-              <p className="text-xl text-[#9096bb] max-w-3xl mb-16 leading-relaxed -mt-6">
-                A clear path from "we're not sure what we have" to a modern platform in production. The first production module ships as a fixed-scope <span className="text-[#f6f7ff] font-medium">pilot</span>, so you can judge the outcome on real code before committing to the full build.
-              </p>
-            </FadeIn>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-6 mb-20">
-              {[
-                { n: "1", title: "Analyze", badge: "Free", desc: "We map your system, its dependencies, and where the real risk lives. You get a clear picture of what modernizing takes, at no cost and no commitment." },
-                { n: "2", title: "Document", desc: "We recover the business rules buried in your code into clear specifications you own, so the knowledge is no longer trapped in software." },
-                { n: "3", title: "Estimate", desc: "A concrete, phased plan: scope, cost, and milestones you can take to the board. No black boxes, no surprises." },
-                { n: "4", title: "Move", desc: "We modernize incrementally, the strangler-fig way. Your application keeps running the entire time. No big-bang, no downtime, always a way back." },
-                { n: "5", title: "Test", desc: "Every slice is verified against your live system before any old code is retired. Same data, same behavior. Proven, then we move on." },
-              ].map((step, i) => (
-                <FadeIn key={step.title} delay={0.08 * i}>
-                  <div className="bg-[#0f1122] border border-white/10 rounded-xl p-6 h-full hover:border-[#9b6bf4]/50 transition-colors shadow-sm flex flex-col">
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className="flex-shrink-0 flex items-center justify-center w-9 h-9 rounded-full bg-[#1b1836] text-[#b091ff] text-base font-bold">{step.n}</div>
-                      <h3 className="text-lg font-bold text-[#f6f7ff]">{step.title}</h3>
-                      {step.badge && <span className="ml-auto inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#9b6bf4] text-white">{step.badge}</span>}
-                    </div>
-                    <p className="text-sm text-[#9096bb] leading-relaxed flex-grow">{step.desc}</p>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-
-            {/* Built into every phase */}
-            <FadeIn>
-              <h3 className="text-xl font-bold text-[#f6f7ff] mb-8">Built into every phase</h3>
-            </FadeIn>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  title: "Business rule extraction",
-                  desc: "AI reads the code and surfaces the rules the business actually runs on, including ones nobody remembers writing. Reviewed and signed off by client experts.",
-                },
-                {
-                  title: "Documentation",
-                  desc: "Current-state and future-state documentation generated as we work, not as an afterthought. The client ends up with a documented system either way.",
-                },
-                {
-                  title: "Automated testing",
-                  desc: "Behavior-parity test suites generated alongside the code. Old and new outputs compared automatically so parity is proven, not asserted.",
-                },
-                {
-                  title: "Data conversion",
-                  desc: "Schema mapping, migration scripts, and reconciliation reports so data arrives complete, validated, and auditable on the new platform.",
-                },
-              ].map((card, i) => (
-                <FadeIn key={card.title} delay={0.1 * i}>
-                  <div className="bg-[#0f1122] rounded-lg p-7 shadow-sm border-t-4 border-t-[#9b6bf4] border-l border-r border-b border-white/10 h-full">
-                    <h4 className="text-base font-bold text-[#f6f7ff] mb-3">{card.title}</h4>
-                    <p className="text-sm text-[#9096bb] leading-relaxed">{card.desc}</p>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Section 4b - Inside the work (proof of craft) */}
+        {/* Section 4 - Inside the work (proof of craft) */}
         <section id="inside" className="py-24 border-y border-white/10" style={{ background: "linear-gradient(180deg, #070812 0%, #0f1122 100%)" }}>
           <div className="max-w-7xl mx-auto px-6">
             <FadeIn>
@@ -553,24 +612,6 @@ export default function Home() {
               ))}
             </div>
 
-            <ScreenshotShowcase
-              label="Discovery output"
-              title="Every route, every job, every workflow — as a user story your team recognizes."
-              lede="The Discovery pipeline turns raw code into user stories grouped by the domain entity they act on. Product and engineering read the same list, in the same vocabulary, before a single line of the rebuild is written."
-              hero={{
-                src: "/screenshots/user-stories-list.png",
-                src2x: "/screenshots/user-stories-list@2x.png",
-                alt: "User Stories view showing extracted stories grouped by entity: create Class, read Teacher, create Intern, and dozens more, each with route and rule count.",
-                caption: "Eighty-three user stories, grouped by domain, recovered from a real production codebase.",
-              }}
-              inset={{
-                src: "/screenshots/user-stories-detail.png",
-                src2x: "/screenshots/user-stories-detail@2x.png",
-                alt: "Single user story detail: route, entity, operation, rule count, and the extracted narrative (As a user, I want X, so that Y).",
-                caption: "Expand any domain to see every CRUD story, verb, and short narrative in the same view.",
-              }}
-            />
-
             {/* C. How we prove it's right: the parity gate */}
             <FadeIn>
               <h3 className="text-xl font-bold text-[#f6f7ff] mb-2">How we prove it is right</h3>
@@ -600,14 +641,61 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 4c - Business rules deep-dive (for techies) */}
-        <section id="business-rules" className="py-24 bg-[#070812]">
+        {/* Section 4b - Discovery output (merged: user stories + business rules) */}
+        <section id="discovery" className="py-24 bg-[#070812]">
           <div className="max-w-7xl mx-auto px-6">
             <FadeIn>
-              <SectionHeading label="For the technical team" title="How we recover your business rules" />
-              <p className="text-xl text-[#9096bb] max-w-3xl mb-16 leading-relaxed -mt-6">
-                The rules your business runs on are buried in legacy code, undocumented, and often known to no one. Here is the actual pipeline: AI reads the code, we recover each rule into a plain-language spec you own, with a citation to the exact source and a test that proves the rebuild behaves identically.
+              <SectionHeading label="Discovery output" title="What you get from Discovery" />
+              <p className="text-xl text-[#9096bb] max-w-3xl mb-12 leading-relaxed -mt-6">
+                Two artifacts, one lineage. Every route, job, and workflow in your codebase becomes a user story your team recognizes. Every rule those stories run on is recovered, cited, and anchored back to the story that produces it. Nothing orphaned. Nothing guessed.
               </p>
+            </FadeIn>
+
+            <FadeIn>
+              <div className="mb-16">
+                <ScreenshotCarousel
+                  slides={[
+                    {
+                      src: "/screenshots/user-stories-list.png",
+                      src2x: "/screenshots/user-stories-list@2x.png",
+                      alt: "User Stories view showing extracted stories grouped by entity: create Class, read Teacher, create Intern, and more, each with route and rule count.",
+                      title: "User stories, grouped by domain",
+                      caption: "A full set of user stories, grouped by the domain entity they act on, recovered from a real production codebase.",
+                    },
+                    {
+                      src: "/screenshots/user-stories-detail.png",
+                      src2x: "/screenshots/user-stories-detail@2x.png",
+                      alt: "Single user story detail: route, entity, operation, rule count, and the extracted narrative (As a user, I want X, so that Y).",
+                      title: "Every story, in your team's vocabulary",
+                      caption: "Expand any domain to see every CRUD story, verb, and short narrative in the same view.",
+                    },
+                    {
+                      src: "/screenshots/business-rules-list.png",
+                      src2x: "/screenshots/business-rules-list@2x.png",
+                      alt: "Business Rules view: rules grouped by their originating user story, with rule kinds (Validation, Authorization, Business Logic) shown inline.",
+                      title: "Business rules, anchored to their stories",
+                      caption: "Rules grouped by the story that produces them, with rule-kind pills for validation, authorization, and business logic.",
+                    },
+                    {
+                      src: "/screenshots/business-rules-coverage.png",
+                      src2x: "/screenshots/business-rules-coverage@2x.png",
+                      alt: "Coverage report: every recovered rule anchored to a user story workflow with zero orphaned rules.",
+                      title: "Coverage, end to end",
+                      caption: "Every recovered rule points back to the story it belongs to. Zero orphans, full audit trail.",
+                    },
+                  ]}
+                />
+              </div>
+            </FadeIn>
+
+            <FadeIn>
+              <div className="mt-24 mb-12">
+                <span className="inline-block text-sm font-bold tracking-wider uppercase text-[#b091ff] mb-3">For the technical team</span>
+                <h3 className="text-3xl md:text-4xl font-bold text-[#f6f7ff] tracking-tight leading-tight">How we recover your business rules</h3>
+                <p className="text-lg text-[#9096bb] max-w-3xl mt-4 leading-relaxed">
+                  The rules your business runs on are buried in legacy code, undocumented, and often known to no one. Here is the actual pipeline: AI reads the code, we recover each rule into a plain-language spec you own, with a citation to the exact source and a test that proves the rebuild behaves identically.
+                </p>
+              </div>
             </FadeIn>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -804,23 +892,6 @@ source: BillWorkflow.cs:64-120`}</pre>
               </p>
             </FadeIn>
 
-            <ScreenshotShowcase
-              label="Business rules, live in the tool"
-              title="Business rules, anchored to the workflows that produce them."
-              lede="Every recovered rule points back to the user story it belongs to, and every user story shows exactly which rules govern it. Nothing is orphaned. Nothing is guessed. Every rule is auditable end to end."
-              hero={{
-                src: "/screenshots/business-rules-list.png",
-                src2x: "/screenshots/business-rules-list@2x.png",
-                alt: "Business Rules view: rules grouped by their originating user story, with rule kinds (Validation, Authorization, Business Logic) shown inline.",
-                caption: "Rules grouped by the story that produces them, with rule-kind pills for validation, authorization, and business logic.",
-              }}
-              inset={{
-                src: "/screenshots/business-rules-coverage.png",
-                src2x: "/screenshots/business-rules-coverage@2x.png",
-                alt: "Coverage report: 412 rules across 83 user stories with zero orphaned rules — every rule anchored to a workflow.",
-                caption: "Coverage report: four hundred and twelve rules across eighty-three stories — zero orphans.",
-              }}
-            />
           </div>
         </section>
 
