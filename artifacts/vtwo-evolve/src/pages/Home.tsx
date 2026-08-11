@@ -23,9 +23,9 @@ function Nav() {
         
         <div className="hidden md:flex items-center space-x-8">
           <a href="#why-now" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Why now</a>
-          <a href="#the-model" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">How we work</a>
           <a href="#inside" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Inside the work</a>
           <a href="#discovery" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Discovery output</a>
+          <a href="#the-model" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">How we work</a>
           <a href="#case-study" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Case study</a>
           <a href="#why-vtwo" className="text-sm font-medium text-[#9096bb] hover:text-[#b091ff] transition-colors">Why V.Two</a>
         </div>
@@ -50,9 +50,9 @@ function Nav() {
         <div className="md:hidden bg-[#0f1122] border-b border-white/10">
           <div className="px-4 pt-2 pb-6 space-y-2 flex flex-col">
             <a href="#why-now" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Why now</a>
-            <a href="#the-model" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">How we work</a>
             <a href="#inside" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Inside the work</a>
             <a href="#discovery" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Discovery output</a>
+            <a href="#the-model" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">How we work</a>
             <a href="#case-study" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Case study</a>
             <a href="#why-vtwo" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Why V.Two</a>
             <a href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center justify-center px-5 py-2 text-base font-semibold text-white bg-gradient-to-r from-[#9b6bf4] to-[#f05aae] rounded-md mx-3">
@@ -69,7 +69,7 @@ function SectionHeading({ label, title, className = "" }: { label?: string, titl
   return (
     <div className={`mb-12 ${className}`}>
       {label && <span className="inline-block text-sm font-bold tracking-wider uppercase text-[#b091ff] mb-3">{label}</span>}
-      <h2 className="text-4xl md:text-5xl font-bold text-[#f6f7ff] tracking-tight leading-tight">{title}</h2>
+      <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#f6f7ff] tracking-tight leading-tight">{title}</h2>
     </div>
   );
 }
@@ -122,77 +122,6 @@ function EngineDiagram() {
       })}
       <text x="444" y="244" textAnchor="middle" fontSize="13.5" fill="#9096bb" fontFamily="DM Sans, sans-serif">Each module is rebuilt and proven at parity against the live system before the legacy version is retired.</text>
     </svg>
-  );
-}
-
-// Reusable product screenshot showcase: label + title + optional lede,
-// then a two-image layout (hero + inset) with responsive picture sources,
-// alt text, and captions. Matches the site's dark card aesthetic.
-function ScreenshotShowcase({
-  label,
-  title,
-  lede,
-  hero,
-  inset,
-}: {
-  label: string;
-  title: string;
-  lede?: string;
-  hero: { src: string; src2x: string; alt: string; caption: string };
-  inset: { src: string; src2x: string; alt: string; caption: string };
-}) {
-  return (
-    <div className="my-16">
-      <FadeIn>
-        <div className="mb-8">
-          <span className="inline-block text-xs font-bold tracking-wider uppercase text-[#b091ff] mb-3">{label}</span>
-          <h3 className="text-2xl md:text-3xl font-bold text-[#f6f7ff] tracking-tight leading-tight">{title}</h3>
-          {lede && (
-            <p className="text-base md:text-lg text-[#9096bb] max-w-3xl mt-4 leading-relaxed">{lede}</p>
-          )}
-        </div>
-      </FadeIn>
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
-        <FadeIn delay={0.05}>
-          <figure className="lg:col-span-3 rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black/40">
-            <picture>
-              <source
-                media="(min-width: 768px)"
-                srcSet={`${hero.src} 1x, ${hero.src2x} 2x`}
-              />
-              <img
-                src={hero.src}
-                alt={hero.alt}
-                loading="lazy"
-                className="w-full h-auto block"
-              />
-            </picture>
-            <figcaption className="px-4 py-3 text-sm text-white/60 border-t border-white/10">
-              {hero.caption}
-            </figcaption>
-          </figure>
-        </FadeIn>
-        <FadeIn delay={0.15}>
-          <figure className="lg:col-span-2 rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black/40">
-            <picture>
-              <source
-                media="(min-width: 768px)"
-                srcSet={`${inset.src} 1x, ${inset.src2x} 2x`}
-              />
-              <img
-                src={inset.src}
-                alt={inset.alt}
-                loading="lazy"
-                className="w-full h-auto block"
-              />
-            </picture>
-            <figcaption className="px-4 py-3 text-sm text-white/60 border-t border-white/10">
-              {inset.caption}
-            </figcaption>
-          </figure>
-        </FadeIn>
-      </div>
-    </div>
   );
 }
 
@@ -450,42 +379,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 3 - The proprietary model (AI-native way of working) */}
-        <section id="the-model" className="py-24 bg-[#070812]">
-          <div className="max-w-7xl mx-auto px-6">
-            <FadeIn>
-              <SectionHeading label="How we work" title="Not a product. A way of working." />
-              <p className="text-xl text-[#9096bb] max-w-3xl mb-16 leading-relaxed">
-                Modernization at this pace was not possible three years ago. Large language models, agent workflows, AST parsing, and semantic search over code have changed what a small, senior team can hold in view at once. Evolve is how we put those capabilities to work, on real production systems, with humans in the loop where it matters.
-              </p>
-            </FadeIn>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <FadeIn delay={0.1}>
-                <div className="bg-[#0f1122] rounded-lg p-8 shadow-sm border-t-4 border-t-[#9b6bf4] border-l border-r border-b border-white/10 h-full">
-                  <h3 className="text-xl font-bold text-[#f6f7ff] mb-4">Skills</h3>
-                  <p className="text-[#9096bb] leading-relaxed">The human + AI craft. Architects who know how to prompt, review, and steer LLMs against a real codebase — deep familiarity with legacy patterns and a working taste for what to preserve versus rewrite. The AI is the leverage; the judgment is ours.</p>
-                </div>
-              </FadeIn>
-              <FadeIn delay={0.2}>
-                <div className="bg-[#0f1122] rounded-lg p-8 shadow-sm border-t-4 border-t-[#9b6bf4] border-l border-r border-b border-white/10 h-full">
-                  <h3 className="text-xl font-bold text-[#f6f7ff] mb-4">Context</h3>
-                  <p className="text-[#9096bb] leading-relaxed">How we gather what the model needs to be useful. Code, via tree-sitter AST parsing and dependency graphs. History, via git and prior decisions. People, via SME interviews. AI lets a small team hold all of that in view at once — the thing no human team could do by hand.</p>
-                </div>
-              </FadeIn>
-              <FadeIn delay={0.3}>
-                <div className="bg-[#0f1122] rounded-lg p-8 shadow-sm border-t-4 border-t-[#9b6bf4] border-l border-r border-b border-white/10 h-full">
-                  <h3 className="text-xl font-bold text-[#f6f7ff] mb-4">Methods</h3>
-                  <p className="text-[#9096bb] leading-relaxed">The repeatable AI-driven techniques. Rule extraction with two-pass LLM synthesis. Semantic search across the codebase via embeddings. Architect-in-the-loop code generation. Strangler-fig migration paths that let old and new run side by side. Governed end to end by the <a href="https://www.vtwo.co/services#ai-enablement" target="_blank" rel="noopener noreferrer" className="text-[#b091ff] font-medium underline underline-offset-2 decoration-[#9b6bf4]/40 hover:decoration-[#9b6bf4]">V.Two AI SDLC</a>.</p>
-                </div>
-              </FadeIn>
-            </div>
-            <FadeIn>
-              <p className="text-[#9096bb] leading-relaxed mt-10 max-w-3xl">V.Two Evolve is the application-modernization edge of V.Two's <a href="https://www.vtwo.co/services#digital-transformation" target="_blank" rel="noopener noreferrer" className="text-[#b091ff] font-medium underline underline-offset-2 decoration-[#9b6bf4]/40 hover:decoration-[#9b6bf4]">Digital Transformation practice</a>.</p>
-            </FadeIn>
-          </div>
-        </section>
-
         {/* Section 3b - Legacy to modern (before/after) */}
         <section className="py-24 bg-[#0a0c17] border-y border-white/10">
           <div className="max-w-7xl mx-auto px-6">
@@ -548,23 +441,6 @@ export default function Home() {
               </p>
             </FadeIn>
 
-            <ScreenshotShowcase
-              label="Inside the tool"
-              title="See the pipeline in action."
-              lede="The V.Two Evolve workbench extracts business rules from your codebase through an eight-stage pipeline. Progress, cost, and time are tracked live — so you can see exactly how the machine reads your system."
-              hero={{
-                src: "/screenshots/extraction-run.png",
-                src2x: "/screenshots/extraction-run@2x.png",
-                alt: "Evolve Discovery extraction running with live progress: 8-stage pipeline showing stage weights, elapsed time, projected cost, and current stage.",
-                caption: "Live extraction with cost and time tracking across the eight-stage Discovery pipeline.",
-              }}
-              inset={{
-                src: "/screenshots/extraction-stages.png",
-                src2x: "/screenshots/extraction-stages@2x.png",
-                alt: "Evolve Discovery's 8-stage extraction state machine: repository setup, AST parse, entity discovery, pathway detection, story synthesis, rule extraction, embedding, and tech stack detection.",
-                caption: "Eight canonical stages, every run: repo setup, AST parse, entity discovery, pathway detection, story synthesis, rule extraction, embedding, and tech stack.",
-              }}
-            />
           </div>
         </section>
 
@@ -895,6 +771,42 @@ source: BillWorkflow.cs:64-120`}</pre>
           </div>
         </section>
 
+        {/* Section 3 - The proprietary model (AI-native way of working) — moved after Discovery output */}
+        <section id="the-model" className="py-24 bg-[#070812]">
+          <div className="max-w-7xl mx-auto px-6">
+            <FadeIn>
+              <SectionHeading label="How we work" title="Not a product. A way of working." />
+              <p className="text-xl text-[#9096bb] max-w-3xl mb-16 leading-relaxed">
+                Modernization at this pace was not possible three years ago. Large language models, agent workflows, AST parsing, and semantic search over code have changed what a small, senior team can hold in view at once. Evolve is how we put those capabilities to work, on real production systems, with humans in the loop where it matters.
+              </p>
+            </FadeIn>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <FadeIn delay={0.1}>
+                <div className="bg-[#0f1122] rounded-lg p-8 shadow-sm border-t-4 border-t-[#9b6bf4] border-l border-r border-b border-white/10 h-full">
+                  <h3 className="text-xl font-bold text-[#f6f7ff] mb-4">Skills</h3>
+                  <p className="text-[#9096bb] leading-relaxed">The human + AI craft. Architects who know how to prompt, review, and steer LLMs against a real codebase — deep familiarity with legacy patterns and a working taste for what to preserve versus rewrite. The AI is the leverage; the judgment is ours.</p>
+                </div>
+              </FadeIn>
+              <FadeIn delay={0.2}>
+                <div className="bg-[#0f1122] rounded-lg p-8 shadow-sm border-t-4 border-t-[#9b6bf4] border-l border-r border-b border-white/10 h-full">
+                  <h3 className="text-xl font-bold text-[#f6f7ff] mb-4">Context</h3>
+                  <p className="text-[#9096bb] leading-relaxed">How we gather what the model needs to be useful. Code, via tree-sitter AST parsing and dependency graphs. History, via git and prior decisions. People, via SME interviews. AI lets a small team hold all of that in view at once — the thing no human team could do by hand.</p>
+                </div>
+              </FadeIn>
+              <FadeIn delay={0.3}>
+                <div className="bg-[#0f1122] rounded-lg p-8 shadow-sm border-t-4 border-t-[#9b6bf4] border-l border-r border-b border-white/10 h-full">
+                  <h3 className="text-xl font-bold text-[#f6f7ff] mb-4">Methods</h3>
+                  <p className="text-[#9096bb] leading-relaxed">The repeatable AI-driven techniques. Rule extraction with two-pass LLM synthesis. Semantic search across the codebase via embeddings. Architect-in-the-loop code generation. Strangler-fig migration paths that let old and new run side by side. Governed end to end by the <a href="https://www.vtwo.co/services#ai-enablement" target="_blank" rel="noopener noreferrer" className="text-[#b091ff] font-medium underline underline-offset-2 decoration-[#9b6bf4]/40 hover:decoration-[#9b6bf4]">V.Two AI SDLC</a>.</p>
+                </div>
+              </FadeIn>
+            </div>
+            <FadeIn>
+              <p className="text-[#9096bb] leading-relaxed mt-10 max-w-3xl">V.Two Evolve is the application-modernization edge of V.Two's <a href="https://www.vtwo.co/services#digital-transformation" target="_blank" rel="noopener noreferrer" className="text-[#b091ff] font-medium underline underline-offset-2 decoration-[#9b6bf4]/40 hover:decoration-[#9b6bf4]">Digital Transformation practice</a>.</p>
+            </FadeIn>
+          </div>
+        </section>
+
         {/* Section 5 - Case study */}
         <section id="case-study" className="py-24 bg-[#0a0c17] border-y border-white/10">
           <div className="max-w-7xl mx-auto px-6">
@@ -1085,7 +997,7 @@ source: BillWorkflow.cs:64-120`}</pre>
         <section className="py-24 bg-[#9b6bf4] text-white">
           <div className="max-w-5xl mx-auto px-6 text-center">
             <FadeIn>
-              <h2 className="text-4xl font-extrabold mb-12">Ready to start?</h2>
+              <h2 className="text-5xl md:text-6xl font-extrabold mb-12">Ready to start?</h2>
               
               <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-4 mb-16 relative">
                 {/* Connecting line for desktop */}
