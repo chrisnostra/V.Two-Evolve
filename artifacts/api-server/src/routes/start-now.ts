@@ -1,9 +1,9 @@
 import { Router, type IRouter, type Request, type Response } from "express";
 import { z } from "zod";
-import { Resend } from "resend";
 import { db } from "@workspace/db";
 import { startNowSubmissions } from "@workspace/db/schema";
 import { logger } from "../lib/logger";
+import { sendStartNowEmail } from "../lib/graph-mailer";
 
 // ---------------------------------------------------------------------------
 // Zod schema — duplicated from frontend (no shared manual schema package yet)
@@ -100,14 +100,18 @@ router.post("/start-now", async (req: Request, res: Response) => {
     // Continue — email delivery is still valuable even if DB fails
   }
 
-  // Send email via Resend
-  const resendApiKey = process.env.RESEND_API_KEY;
+  // Send email via Microsoft Graph
   const toEmail = process.env.START_NOW_TO_EMAIL ?? "chris@vtwo.co";
   const fromEmail = process.env.START_NOW_FROM_EMAIL ?? "noreply@vtwo.co";
 
-  if (!resendApiKey) {
+  const graphConfigured =
+    process.env.GRAPH_TENANT_ID &&
+    process.env.GRAPH_CLIENT_ID &&
+    process.env.GRAPH_CLIENT_SECRET;
+
+  if (!graphConfigured) {
     logger.error(
-      "RESEND_API_KEY is not set — email will NOT be sent. Submission saved to DB.",
+      "GRAPH_TENANT_ID / GRAPH_CLIENT_ID / GRAPH_CLIENT_SECRET not fully set — email will NOT be sent. Submission saved to DB.",
     );
     res.status(202).json({
       message: "Thanks — your submission has been received.",
@@ -117,48 +121,19 @@ router.post("/start-now", async (req: Request, res: Response) => {
   }
 
   try {
-    const resend = new Resend(resendApiKey);
-
-    const subject = `[Evolve Start Now] ${data.name} from ${data.company}`;
-
-    const textBody = `New Start Now submission from the V.Two Evolve site:
-
-Name:            ${data.name}
-Email:           ${data.email}
-Company:         ${data.company}
-Codebase size:   ${data.codebaseSize || "Not provided"}
-Tech stack:      ${data.techStack || "Not provided"}
-
-Message:
-${data.message || "(none)"}
-
-Submitted:       ${submittedAt.toISOString()}
-Source IP:        ${clientIp}`;
-
-    const htmlBody = `<div style="font-family: sans-serif; color: #333; line-height: 1.6;">
-  <h2 style="color: #9b6bf4;">New Start Now Submission</h2>
-  <p>From the V.Two Evolve site:</p>
-  <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
-    <tr><td style="padding: 6px 12px; font-weight: bold; white-space: nowrap;">Name</td><td style="padding: 6px 12px;">${escapeHtml(data.name)}</td></tr>
-    <tr><td style="padding: 6px 12px; font-weight: bold; white-space: nowrap;">Email</td><td style="padding: 6px 12px;"><a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></td></tr>
-    <tr><td style="padding: 6px 12px; font-weight: bold; white-space: nowrap;">Company</td><td style="padding: 6px 12px;">${escapeHtml(data.company)}</td></tr>
-    <tr><td style="padding: 6px 12px; font-weight: bold; white-space: nowrap;">Codebase size</td><td style="padding: 6px 12px;">${escapeHtml(data.codebaseSize || "Not provided")}</td></tr>
-    <tr><td style="padding: 6px 12px; font-weight: bold; white-space: nowrap;">Tech stack</td><td style="padding: 6px 12px;">${escapeHtml(data.techStack || "Not provided")}</td></tr>
-  </table>
-  <h3 style="margin-top: 16px;">Message</h3>
-  <p style="white-space: pre-wrap; background: #f5f5f5; padding: 12px; border-radius: 6px;">${escapeHtml(data.message || "(none)")}</p>
-  <hr style="border: none; border-top: 1px solid #eee; margin: 16px 0;" />
-  <p style="font-size: 12px; color: #999;">Submitted: ${submittedAt.toISOString()} · IP: ${clientIp}</p>
-</div>`;
-
-    await resend.emails.send({
-      from: fromEmail,
-      to: toEmail,
-      replyTo: data.email,
-      subject,
-      text: textBody,
-      html: htmlBody,
-    });
+    await sendStartNowEmail(
+      {
+        name: data.name,
+        email: data.email,
+        company: data.company,
+        codebaseSize: data.codebaseSize,
+        techStack: data.techStack,
+        message: data.message,
+        submittedAt,
+        clientIp,
+      },
+      { to: toEmail, from: fromEmail },
+    );
 
     // Update DB with email delivery timestamp
     if (submissionId) {
@@ -173,14 +148,12 @@ Source IP:        ${clientIp}`;
       }
     }
 
-    logger.info({ submissionId, to: toEmail }, "Start-now email sent via Resend");
-
     res.status(200).json({
       message: "Thanks — Chris will reply within 1 business day.",
       id: submissionId,
     });
   } catch (err) {
-    logger.error({ err }, "Failed to send start-now email via Resend");
+    logger.error({ err }, "Failed to send start-now email via Microsoft Graph");
     // Submission is already persisted — inform the user it was received
     res.status(202).json({
       message: "Thanks — your submission has been received.",
@@ -188,14 +161,5 @@ Source IP:        ${clientIp}`;
     });
   }
 });
-
-function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
 
 export default router;
