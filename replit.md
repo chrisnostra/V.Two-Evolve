@@ -10,6 +10,11 @@ _Replace the heading above with the project's name, and this line with one sente
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
 - Required env: `DATABASE_URL` — Postgres connection string
+- Required env for Start Now form emails:
+  - `RESEND_API_KEY` — API key from [Resend](https://resend.com). If missing, form submissions still persist to Postgres but no email is sent.
+  - `START_NOW_TO_EMAIL` — recipient email (default: `chris@vtwo.co`)
+  - `START_NOW_FROM_EMAIL` — sender address (default: `noreply@vtwo.co`). **Must be a verified domain in Resend** (see Resend dashboard → Domains → verify `vtwo.co`).
+- After pulling the `feat/start-now-form` branch, run `pnpm --filter @workspace/db run push` to apply the new `start_now_submissions` table migration.
 
 ## Stack
 

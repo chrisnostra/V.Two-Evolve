@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { StartNowDialog } from "@/components/StartNowDialog";
 
 function Nav() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -30,12 +31,15 @@ function Nav() {
         </div>
 
         <div className="hidden md:flex">
-          <a
-            href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-[#9b6bf4] to-[#f05aae] rounded-md hover:opacity-90 transition-opacity shadow-[0_6px_24px_rgba(155,107,244,0.35)]"
-          >
-            Start free
-          </a>
+          <StartNowDialog
+            trigger={
+              <button
+                className="inline-flex items-center justify-center px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-[#9b6bf4] to-[#f05aae] rounded-md hover:opacity-90 transition-opacity shadow-[0_6px_24px_rgba(155,107,244,0.35)] cursor-pointer"
+              >
+                Start free
+              </button>
+            }
+          />
         </div>
 
         <div className="md:hidden flex items-center">
@@ -53,9 +57,15 @@ function Nav() {
             <a href="#discovery" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Discovery output</a>
             <a href="#the-model" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">How we work</a>
             <a href="#why-vtwo" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-[#9096bb] hover:text-[#b091ff]">Why V.Two</a>
-            <a href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center justify-center px-5 py-2 text-base font-semibold text-white bg-gradient-to-r from-[#9b6bf4] to-[#f05aae] rounded-md mx-3">
-              Start free
-            </a>
+            <StartNowDialog
+              trigger={
+                <button
+                  className="mt-4 inline-flex items-center justify-center px-5 py-2 text-base font-semibold text-white bg-gradient-to-r from-[#9b6bf4] to-[#f05aae] rounded-md mx-3 cursor-pointer"
+                >
+                  Start free
+                </button>
+              }
+            />
           </div>
         </div>
       )}
@@ -982,9 +992,15 @@ parent_story_id: US-Bill-Finalize`}</pre>
                 ))}
               </div>
 
-              <a href="https://www.vtwo.co/get-in-touch/contact" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-4 text-xl font-bold text-[#070812] bg-white rounded-md hover:bg-gray-100 transition-colors shadow-lg">
-                Request your free assessment
-              </a>
+              <StartNowDialog
+                trigger={
+                  <button
+                    className="inline-flex items-center justify-center px-8 py-4 text-xl font-bold text-[#070812] bg-white rounded-md hover:bg-gray-100 transition-colors shadow-lg cursor-pointer"
+                  >
+                    Request your free assessment
+                  </button>
+                }
+              />
             </FadeIn>
           </div>
         </section>
